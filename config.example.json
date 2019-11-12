@@ -1,0 +1,6 @@
+{
+    "auth": {
+        "token": "change-me"
+    },
+    "command_prefix": "!"
+}

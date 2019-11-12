@@ -1,0 +1,38 @@
+{
+    "name": "nazeem",
+    "version": "0.0.1",
+    "description": "Custom Discord bot for Belmont Boy server",
+    "main": "dist/index.js",
+    "repository": {
+        "type": "git",
+        "url": "git+https://github.com/phinocio/nazeem.git"
+    },
+    "author": "Phinocio",
+    "bugs": {
+        "url": "https://github.com/phinocio/nazeem/issues"
+    },
+    "homepage": "https://github.com/phinocio/nazeem#readme",
+    "license": "MIT",
+    "private": true,
+    "scripts": {
+        "tsc": "tsc --noEmit",
+        "watch": "nodemon --watch '**/*.ts' --ignore 'src/**/*.spec.ts' --exec 'ts-node' src/index.ts",
+        "run-prod": "ts-node 'src/index.ts'"
+    },
+    "devDependencies": {
+        "@types/node": "^12.12.7",
+        "@typescript-eslint/eslint-plugin": "^2.7.0",
+        "@typescript-eslint/parser": "^2.7.0",
+        "eslint": "^6.6.0",
+        "eslint-config-prettier": "^6.5.0",
+        "eslint-plugin-prettier": "^3.1.1",
+        "nodemon": "^1.19.4",
+        "prettier": "^1.19.1",
+        "typescript": "^3.7.2"
+    },
+    "dependencies": {
+        "discord.js": "^11.5.1",
+        "ts-node": "^8.5.0",
+        "winston": "^3.2.1"
+    }
+}
