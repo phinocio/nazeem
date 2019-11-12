@@ -1,12 +1,12 @@
 import Discord from 'discord.js';
-import { auth, roles } from '../config.json';
-import MessageHandler from './Handlers/MessageHandler';
+import { auth } from '../config.json';
+import EventHandler from './Handlers/EventHandler';
 
 // bot
 class Bot {
     private TOKEN = '';
     private client: Discord.Client;
-    private msgHandler: MessageHandler | undefined;
+    private eventHandler: EventHandler | undefined;
 
     public constructor() {
         this.TOKEN = auth.token;
@@ -26,15 +26,10 @@ class Bot {
 
     private ready(): void {
         console.log(`Logged in as ${this.client.user.tag}!`);
-        this.client.user.setActivity('!h or !help');
+        this.client.user.setActivity('Cloud District 9', { type: 'WATCHING' });
 
-        this.msgHandler = new MessageHandler(this.client);
-        this.msgHandler.handle();
-
-        // TODO: Clean this up into a separate events handler.
-        this.client.on('guildMemberAdd', member => {
-            member.addRole(roles.Prisoner);
-        });
+        this.eventHandler = new EventHandler(this.client);
+        this.eventHandler.handle();
     }
 }
 

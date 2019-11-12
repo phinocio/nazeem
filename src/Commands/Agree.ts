@@ -7,14 +7,18 @@ class Agree extends Command {
         super();
     }
 
-    public handle(msg: Message): void {
+    public async handle(msg: Message): Promise<void> {
         // if message = !agree and channel = abandoned prison && member has role = Prisoner
         if (
             msg.channel.id === channels.gatekeep &&
             msg.member.roles.has(roles.Prisoner)
         ) {
-            msg.member.removeRole(roles.Prisoner);
-            msg.delete();
+            try {
+                msg.member.removeRole(roles.Prisoner);
+                msg.delete();
+            } catch (e) {
+                console.log(e.message);
+            }
         }
 
         // No response.
