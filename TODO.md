@@ -7,6 +7,10 @@
 -   [x] on server join, apply Prisoner role.
 -   [x] Remove prisoner role on 'I agree'
 
+### Database
+
+-   [ ] Set up a simple DB in order to track users bans/kicks/warnings, etc.
+
 ### Member management
 
 -   [ ] Ban/kick/warnings (need DB to track).

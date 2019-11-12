@@ -17,7 +17,7 @@
     "scripts": {
         "tsc": "tsc --noEmit",
         "watch": "nodemon --watch '**/*.ts' --ignore 'src/**/*.spec.ts' --exec 'ts-node' src/App.ts",
-        "run-prod": "ts-node 'src/index.ts'"
+        "run-prod": "ts-node 'src/App.ts'"
     },
     "devDependencies": {
         "@types/node": "^12.12.7",

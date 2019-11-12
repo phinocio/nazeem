@@ -13,7 +13,7 @@ class EventHandler {
         this.msgHandler = new MessageHandler();
     }
 
-    public handle(): void {
+    public async handle(): Promise<void> {
         this.client.on('guildMemberAdd', member => {
             this.memberJoin.handle(member);
         });
