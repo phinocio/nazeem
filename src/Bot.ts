@@ -31,6 +31,7 @@ class Bot {
         this.msgHandler = new MessageHandler(this.client);
         this.msgHandler.handle();
 
+        // TODO: Clean this up into a separate events handler.
         this.client.on('guildMemberAdd', member => {
             member.addRole(roles.Prisoner);
         });

@@ -3,10 +3,10 @@ import Agree from './Agree';
 
 class CommandList {
     private commands: object = {
-        'h|help': {
+        help: {
             command: Help,
             description: 'Gives help on commands.',
-            usage: 'h, help'
+            usage: '!help | !help <command> for help on individual commands.'
         },
         agree: {
             command: Agree,

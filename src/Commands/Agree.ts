@@ -7,7 +7,7 @@ class Agree extends Command {
         super();
     }
 
-    public async handle(msg: Message): Promise<void> {
+    public handle(msg: Message): void {
         // if message = !agree and channel = abandoned prison && member has role = Prisoner
         if (
             msg.channel.id === channels.gatekeep &&
@@ -15,7 +15,6 @@ class Agree extends Command {
         ) {
             msg.member.removeRole(roles.Prisoner);
             msg.delete();
-            console.log('msg deleted');
         }
 
         // No response.
