@@ -19,17 +19,17 @@ class CommandHandler {
     }
 
     public handle(cmdMessage: string, msg: Message): void {
-        const command = cmdMessage.split(' ')[0].toLowerCase();
+        // Get the actual command from the message (first index of split regardless of num of spaces).
+        const command = cmdMessage.split(' ')[0];
+        // Remove the command itself from the msg to get any params. Should be left with a CSV list of params.
         const params = cmdMessage.replace(command, '').trim();
 
-        if (this.commandMap.has(command)) {
-            const run = this.commandMap.get(command);
-            if (run) {
-                if (params) {
-                    run.handle(msg, params);
-                } else {
-                    run.handle(msg);
-                }
+        const run = this.commandMap.get(command);
+        if (run) {
+            if (params) {
+                run.handle(msg, params);
+            } else {
+                run.handle(msg);
             }
         }
     }

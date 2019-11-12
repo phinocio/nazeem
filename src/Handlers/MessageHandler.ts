@@ -20,6 +20,7 @@ class MessageHandler {
                 !msg.author.bot
             ) {
                 const cmdMessage = msg.content.substring(1).toLowerCase();
+                console.log(cmdMessage);
                 this.cmdHandler.handle(cmdMessage, msg);
             }
         });
