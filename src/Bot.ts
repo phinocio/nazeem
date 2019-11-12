@@ -1,5 +1,5 @@
 import Discord from 'discord.js';
-import { auth } from '../config.json';
+import { auth, roles } from '../config.json';
 import MessageHandler from './Handlers/MessageHandler';
 
 // bot
@@ -30,6 +30,10 @@ class Bot {
 
         this.msgHandler = new MessageHandler(this.client);
         this.msgHandler.handle();
+
+        this.client.on('guildMemberAdd', member => {
+            member.addRole(roles.Prisoner);
+        });
     }
 }
 

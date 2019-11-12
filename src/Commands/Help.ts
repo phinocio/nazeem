@@ -3,7 +3,7 @@ import Command from './Command';
 import CommandList from './CommandList';
 import { bot } from '../../config.json';
 
-class NextGame extends Command {
+class Help extends Command {
     constructor() {
         super();
     }
@@ -22,13 +22,13 @@ class NextGame extends Command {
         embed.setColor(0x00ae86);
 
         for (const key in data) {
-            embed.addField(key, data[key].description, true);
+            embed.addField(key, data[key].description);
         }
 
-        embed.setFooter('type !help {command} for specific command info');
+        embed.setFooter('Type !help {command} for specific command info.');
 
         msg.channel.send(embed);
     }
 }
 
-export default NextGame;
+export default Help;
