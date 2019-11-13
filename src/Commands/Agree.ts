@@ -14,8 +14,8 @@ class Agree extends Command {
             msg.member.roles.has(roles.Prisoner)
         ) {
             try {
-                msg.member.removeRole(roles.Prisoner);
-                msg.delete();
+                await msg.member.removeRole(roles.Prisoner);
+                await msg.delete();
             } catch (e) {
                 console.log(e.message);
             }
