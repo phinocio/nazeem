@@ -13,7 +13,8 @@ class MessageHandler {
         if (
             msg.content.startsWith(message.prefix) &&
             msg.content.length > 1 &&
-            !msg.author.bot
+            !msg.author.bot &&
+            msg.guild !== null
         ) {
             const cmdMessage = msg.content.substring(1).toLowerCase();
             this.cmdHandler.handle(cmdMessage, msg);
