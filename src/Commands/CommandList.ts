@@ -1,5 +1,6 @@
 import Help from './Help';
 import Agree from './Agree';
+import Kick from './Kick';
 
 class CommandList {
     private commands: object = {
@@ -13,6 +14,12 @@ class CommandList {
             description:
                 'Agree to the server rules to remove Prisoner role and gain access to channels.',
             usage: '!agree'
+        },
+        kick: {
+            command: Kick,
+            description:
+                'Kick a specified user from the server with an optional reason given.',
+            usage: '!kick <user> <reason>'
         }
     };
 
