@@ -8,14 +8,14 @@ class Help extends Command {
         super();
     }
 
-    public async handle(msg: Message, params?: string): Promise<void> {
+    public async handle(msg: Message, params: string): Promise<void> {
         // do things
         const commands = new CommandList().getCommands();
 
         if (params) {
             // Only respond to 1 param.
-            const param = params[0];
-            return this.respondCommand(msg, param, commands[param]);
+            const param = params.split(' ')[0];
+            return this.respondCommand(msg, commands[param], param);
         }
 
         return this.respond(msg, commands);
@@ -42,9 +42,10 @@ class Help extends Command {
 
     private async respondCommand(
         msg: Message,
-        command: string,
-        data: object
+        data: object,
+        command: string
     ): Promise<void> {
+        console.log(data);
         if (data) {
             const embed = new RichEmbed();
             embed.setAuthor(`${bot.name} Help Menu`, bot.avatar);
