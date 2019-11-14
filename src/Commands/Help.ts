@@ -33,7 +33,11 @@ class Help extends Command {
 
         embed.setFooter('Type !help {command} for specific command info.');
 
-        msg.channel.send(embed);
+        try {
+            await msg.channel.send(embed);
+        } catch (e) {
+            console.error('Error from help command: ' + e.message);
+        }
     }
 
     private async respondCommand(
@@ -55,7 +59,11 @@ class Help extends Command {
 
             embed.setFooter('Type !help {command} for specific command info.');
 
-            msg.channel.send(embed);
+            try {
+                await msg.channel.send(embed);
+            } catch (e) {
+                console.error('Error from help command: ' + e.message);
+            }
         }
     }
 }

@@ -17,16 +17,16 @@ class Agree extends Command {
                 await msg.member.removeRole(roles.Prisoner);
                 await msg.delete();
             } catch (e) {
-                this.respond(msg, e.message);
+                this.respond(msg, { message: e.message });
             }
         }
 
         // No response.
     }
 
-    protected async respond(msg: Message, data: string): Promise<void> {
+    protected async respond(msg: Message, data: object): Promise<void> {
         try {
-            await msg.channel.send(data);
+            await msg.channel.send(data['message']);
         } catch (e) {
             console.error('Agree response error: ' + e.message);
         }
