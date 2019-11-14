@@ -1,7 +1,12 @@
 import { Message } from 'discord.js';
 
 abstract class Command {
-    public abstract handle(msg: Message, params?: string): void;
+    public abstract async handle(msg: Message, params?: string): Promise<void>;
+
+    protected abstract async respond(
+        msg: Message,
+        data: object | string
+    ): Promise<void>;
 }
 
 export default Command;
