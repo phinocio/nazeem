@@ -14,14 +14,14 @@ class Help extends Command {
 
         if (params) {
             // Only respond to 1 param.
-            const param = params.split(' ')[0];
+            const param = params[0];
             return this.respondCommand(msg, param, commands[param]);
         }
 
         return this.respond(msg, commands);
     }
 
-    private async respond(msg: Message, data: object): Promise<void> {
+    protected async respond(msg: Message, data: object): Promise<void> {
         const embed = new RichEmbed();
         embed.setAuthor(`${bot.name} Help Menu`, bot.avatar);
         embed.setThumbnail(bot.avatar);
