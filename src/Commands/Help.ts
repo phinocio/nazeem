@@ -45,7 +45,6 @@ class Help extends Command {
         data: object,
         command: string
     ): Promise<void> {
-        console.log(data);
         if (data) {
             const embed = new RichEmbed();
             embed.setAuthor(`${bot.name} Help Menu`, bot.avatar);
