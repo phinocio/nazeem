@@ -10,7 +10,7 @@ class Clear implements Command<ClearParams> {
     constructor() {
         this.identifier = 'Clear';
         this.description =
-            'Clear X number of messages. Amount includes the command itself.';
+            'Clear X number of messages. Excludes the command itself.';
         this.parser = ClearParamsParser;
     }
 
