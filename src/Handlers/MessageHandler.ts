@@ -1,5 +1,5 @@
 import { Message } from 'discord.js';
-import { message } from '../../config.json';
+import { message, channels } from '../../config.json';
 import CommandHandler from './CommandHandler';
 import CommandList from '../Commands/CommandList';
 import CommandRegistry from '../Commands/CommandRegistry';
@@ -13,15 +13,23 @@ class MessageHandler {
         this.cmdHandler = new CommandHandler(this.cmdRegistry);
     }
 
-    public handle(msg: Message): void {
+    public async handle(msg: Message): Promise<void> {
         if (
             msg.content.startsWith(message.prefix) &&
-            msg.content.length > 1 &&
+            msg.content.length > message.prefix.length && // Prevent sending commands to bot that is just the prefix.
             !msg.author.bot &&
             msg.guild !== null
         ) {
-            const cmdMessage = msg.content.substring(1).toLowerCase();
-            this.cmdHandler.handle(cmdMessage, msg);
+            const cmdMessage = msg.content
+                .substring(message.prefix.length)
+                .toLowerCase();
+            await this.cmdHandler.handle(cmdMessage, msg);
+        } else if (
+            msg.channel.id == channels.gatekeep &&
+            !msg.member.hasPermission('MANAGE_MESSAGES', true, true)
+        ) {
+            // delete every message that's sent in gatekeep channel except those who have manage messages permission and are an admin..
+            await msg.delete();
         }
     }
 }
