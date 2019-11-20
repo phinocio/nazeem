@@ -1,12 +1,16 @@
 import { Message } from 'discord.js';
 import { message } from '../../config.json';
 import CommandHandler from './CommandHandler';
+import CommandList from '../Commands/CommandList';
+import CommandRegistry from '../Commands/CommandRegistry';
 
 class MessageHandler {
     private cmdHandler: CommandHandler;
+    private cmdRegistry: CommandRegistry;
 
     public constructor() {
-        this.cmdHandler = new CommandHandler();
+        this.cmdRegistry = new CommandRegistry(new CommandList().getCommands());
+        this.cmdHandler = new CommandHandler(this.cmdRegistry);
     }
 
     public handle(msg: Message): void {

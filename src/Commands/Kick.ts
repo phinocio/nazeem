@@ -1,15 +1,21 @@
-import Command from './Command';
+import Command from '../Interfaces/Command';
 import { Message } from 'discord.js';
+import KickParams from '../Types/KickParams';
+import KickParamsParser from '../Parsers/KickParamsParser';
 
-class Kick extends Command {
+class Kick implements Command<KickParams> {
+    identifier: string;
+    parser: (src: Message) => KickParams;
+    description: string;
+
     constructor() {
-        super();
+        this.identifier = 'Kick';
+        this.parser = KickParamsParser;
+        this.description = 'Kick a user with optional reason.';
     }
 
-    public async handle(msg: Message, params: string): Promise<void> {
-        const member = msg.mentions.members.first();
-        let reason = '';
-
+    public async handle(msg: Message, params: KickParams): Promise<void> {
+        const { member, reason } = params;
         if (!msg.member.hasPermission('KICK_MEMBERS')) {
             await this.respond(
                 msg,
@@ -42,12 +48,6 @@ class Kick extends Command {
         }
 
         try {
-            if (params) {
-                // Get rid of the first param, as it is the user to kick.
-                params = params.replace(String(member), '').trim();
-                reason = params || 'unspecified';
-            }
-
             await member.send(
                 `You have been kicked from **${msg.guild.name}** for: ${reason}`
             );
@@ -55,7 +55,7 @@ class Kick extends Command {
             await this.respond(
                 msg,
                 {
-                    message: `**${member.user.username}** *has been kicked for:*  ${reason}`
+                    message: `**${member.user.username}** has been kicked for: ${reason}`
                 },
                 'send'
             );
@@ -81,7 +81,7 @@ class Kick extends Command {
                     break;
             }
         } catch (e) {
-            console.log('Error from kick command: ' + e.message);
+            console.error(`${this.identifier} response error: ${e.message}`);
         }
     }
 }

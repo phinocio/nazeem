@@ -1,10 +1,14 @@
 import { Message } from 'discord.js';
-import Command from './Command';
 import { channels, roles } from '../../config.json';
+import Command from '../Interfaces/Command';
 
-class Agree extends Command {
+class Agree implements Command<undefined> {
+    identifier: string;
+    description: string;
     constructor() {
-        super();
+        this.identifier = 'Agree';
+        this.description =
+            'Agree to server rules and remove Prisoner role, granting access to channels.';
     }
 
     public async handle(msg: Message): Promise<void> {
@@ -28,7 +32,7 @@ class Agree extends Command {
         try {
             await msg.channel.send(data['message']);
         } catch (e) {
-            console.error('Agree response error: ' + e.message);
+            console.error(`${this.identifier} response error: ${e.message}`);
         }
     }
 }
