@@ -1,15 +1,15 @@
-import Help from './Help';
 import Agree from './Agree';
+import Clear from './Clear';
+import Help from './Help';
 import Kick from './Kick';
 import Command from '../Interfaces/Command';
-import Clear from './Clear';
 
 class CommandList {
     private commands: Array<Command<any>> = [
-        new Help(),
         new Agree(),
-        new Kick(),
-        new Clear()
+        new Clear(),
+        new Help(),
+        new Kick()
     ];
 
     public getCommands(): Array<Command<any>> {
