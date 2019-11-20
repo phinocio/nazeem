@@ -10,10 +10,7 @@
         "avatar": "https://cdn.discordapp.com/avatars/643861836156108855/993b2f9c27b46d4f1289e5518c6473ee.png?size=2048"
     },
     "channels": {
-        "gatekeep": {
-            "id": "643905832047869963",
-            "message": "646839775533465613"
-        }
+        "gatekeep": "643905832047869963"
     },
     "roles": {
         "Prisoner": "643905868982779934"

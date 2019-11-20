@@ -12,9 +12,8 @@ class Agree implements Command<undefined> {
     }
 
     public async handle(msg: Message): Promise<void> {
-        // if message = !agree and channel = abandoned prison && member has role = Prisoner
         if (
-            msg.channel.id === channels.gatekeep.id &&
+            msg.channel.id === channels.gatekeep &&
             msg.member.roles.has(roles.Prisoner)
         ) {
             try {
