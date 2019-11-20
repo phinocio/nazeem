@@ -25,6 +25,7 @@ class Clear implements Command<ClearParams> {
 
         if (amount && amount > 0 && amount <= 100) {
             try {
+                await msg.delete();
                 await msg.channel.bulkDelete(amount);
             } catch (e) {
                 await this.respond(msg, { message: e.message });
