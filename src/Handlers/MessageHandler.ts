@@ -16,7 +16,7 @@ class MessageHandler {
     public handle(msg: Message): void {
         if (
             msg.content.startsWith(message.prefix) &&
-            msg.content.length > 1 &&
+            msg.content.length > message.prefix.length && // Prevent sending commands to bot that is just the prefix.
             !msg.author.bot &&
             msg.guild !== null
         ) {
