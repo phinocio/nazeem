@@ -20,7 +20,9 @@ class MessageHandler {
             !msg.author.bot &&
             msg.guild !== null
         ) {
-            const cmdMessage = msg.content.substring(1).toLowerCase();
+            const cmdMessage = msg.content
+                .substring(message.prefix.length)
+                .toLowerCase();
             this.cmdHandler.handle(cmdMessage, msg);
         }
     }
