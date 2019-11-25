@@ -6,7 +6,7 @@ import ClearParamsParser from '../Parsers/ClearParamsParser';
 class Clear implements Command<ClearParams> {
     identifier: string;
     description: string;
-    parser: (src: Message) => ClearParams;
+    parser: (src: Message, identifier: string) => ClearParams;
     constructor() {
         this.identifier = 'Clear';
         this.description =

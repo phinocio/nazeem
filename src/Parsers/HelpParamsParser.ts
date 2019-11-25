@@ -1,8 +1,13 @@
 import HelpParams from '../Types/HelpParams';
 import { Message } from 'discord.js';
+import { message } from '../../config.json';
 
-function HelpParamsParser(src: Message): HelpParams {
-    const command = src.content.replace('!help ', '').split(' ')[0];
+function HelpParamsParser(src: Message, identifier: string): HelpParams {
+    const command = src.content
+        .slice(message.prefix.length + identifier.length)
+        .trim()
+        .split(' ')[0]
+        .trim();
     return { command };
 }
 

@@ -5,7 +5,7 @@ import KickParamsParser from '../Parsers/KickParamsParser';
 
 class Kick implements Command<KickParams> {
     identifier: string;
-    parser: (src: Message) => KickParams;
+    parser: (src: Message, identifier: string) => KickParams;
     description: string;
 
     constructor() {

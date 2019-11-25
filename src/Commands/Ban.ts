@@ -5,7 +5,7 @@ import BanParamsParser from '../Parsers/BanParamsParser';
 
 class Ban implements Command<BanParams> {
     identifier: string;
-    parser: (src: Message) => BanParams;
+    parser: (src: Message, identifier: string) => BanParams;
     description: string;
 
     constructor() {

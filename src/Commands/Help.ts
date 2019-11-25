@@ -7,7 +7,7 @@ import HelpParamsParser from '../Parsers/HelpParamsParser';
 
 class Help implements Command<HelpParams> {
     identifier: string;
-    parser: (src: Message) => HelpParams | undefined;
+    parser: (src: Message, identifier: string) => HelpParams | undefined;
     description: string;
     constructor() {
         this.identifier = 'Help';
