@@ -13,7 +13,7 @@ class CommandHandler {
         if (command) {
             let params = '';
             if (typeof command.parser === 'function') {
-                params = command.parser(msg);
+                params = command.parser(msg, commandIdentifier);
             }
             if (params) {
                 command.handle(msg, params);

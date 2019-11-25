@@ -5,7 +5,7 @@ import UnbanParamsParser from '../Parsers/UnbanParamsParser';
 
 class Unban implements Command<UnbanParams> {
     identifier: string;
-    parser: (src: Message) => UnbanParams;
+    parser: (src: Message, identifier: string) => UnbanParams;
     description: string;
 
     constructor() {
