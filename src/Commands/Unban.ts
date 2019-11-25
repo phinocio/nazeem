@@ -63,7 +63,7 @@ class Unban implements Command<UnbanParams> {
             await this.respond(
                 msg,
                 {
-                    message: `${bannedMember.username} is not banned!`
+                    message: `${bannedMember.tag} is not banned!`
                 },
                 'send'
             );
@@ -74,13 +74,13 @@ class Unban implements Command<UnbanParams> {
             await msg.guild.unban(bannedMember, reason);
 
             await bannedMember.send(
-                `You have been kicked from **${msg.guild.name}** for: ${reason}`
+                `You have been unbanned from **${msg.guild.name}** for: ${reason}`
             );
 
             await this.respond(
                 msg,
                 {
-                    message: `**${bannedMember.username}** has been kicked for: ${reason}`
+                    message: `**${bannedMember.tag}** has been unbanned for: ${reason}`
                 },
                 'send'
             );
