@@ -1,11 +1,11 @@
-import KickParams from '../Types/KickParams';
+import BanParams from '../Types/BanParams';
 import { Message } from 'discord.js';
 import { message } from '../../config.json';
 
-function KickParamsParser(src: Message): KickParams {
+function BanParamsParser(src: Message): BanParams {
     const member = src.mentions.members.first();
     let reason = src.content
-        .replace(message.prefix + 'kick', '')
+        .replace(message.prefix + 'ban', '')
         .replace(String(member), '')
         .trim();
     if (!reason) {
@@ -14,4 +14,4 @@ function KickParamsParser(src: Message): KickParams {
     return { member, reason };
 }
 
-export default KickParamsParser;
+export default BanParamsParser;
