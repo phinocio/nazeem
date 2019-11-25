@@ -1,15 +1,19 @@
+import Command from '../Interfaces/Command';
 import Agree from './Agree';
+import Ban from './Ban';
 import Clear from './Clear';
 import Help from './Help';
 import Kick from './Kick';
-import Command from '../Interfaces/Command';
+import Unban from './Unban';
 
 class CommandList {
     private commands: Array<Command<any>> = [
         new Agree(),
+        new Ban(),
         new Clear(),
         new Help(),
-        new Kick()
+        new Kick(),
+        new Unban()
     ];
 
     public getCommands(): Array<Command<any>> {

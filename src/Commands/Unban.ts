@@ -1,57 +1,69 @@
 import Command from '../Interfaces/Command';
 import { Message } from 'discord.js';
-import KickParams from '../Types/KickParams';
-import KickParamsParser from '../Parsers/KickParamsParser';
+import UnbanParams from '../Types/UnbanParams';
+import UnbanParamsParser from '../Parsers/UnbanParamsParser';
 
-class Kick implements Command<KickParams> {
+class Unban implements Command<UnbanParams> {
     identifier: string;
-    parser: (src: Message) => KickParams;
+    parser: (src: Message) => UnbanParams;
     description: string;
 
     constructor() {
-        this.identifier = 'Kick';
-        this.parser = KickParamsParser;
-        this.description = 'Kick a user with optional reason.';
+        this.identifier = 'Unban';
+        this.parser = UnbanParamsParser;
+        this.description = 'Unban a user.';
     }
 
-    public async handle(msg: Message, params: KickParams): Promise<void> {
-        const { member, reason } = params;
-        if (!msg.member.hasPermission('KICK_MEMBERS')) {
+    public async handle(msg: Message, params: UnbanParams): Promise<void> {
+        const { bannedID, reason } = params;
+        if (!msg.member.hasPermission(['BAN_MEMBERS', 'ADMINISTRATOR'])) {
             await this.respond(
                 msg,
                 {
-                    message: "You don't have permission to kick people!"
+                    message: "You don't have permission to unban people!"
                 },
                 'send'
             );
             return;
         }
 
-        if (!msg.guild.me.hasPermission(['KICK_MEMBERS', 'ADMINISTRATOR'])) {
+        if (!msg.guild.me.hasPermission(['BAN_MEMBERS', 'ADMINISTRATOR'])) {
             await this.respond(
                 msg,
                 {
-                    message: "I don't have permission to kick people!"
+                    message: "I don't have permission to unban people!"
                 },
                 'send'
             );
             return;
         }
 
-        if (!member) {
+        if (!bannedID) {
             await this.respond(
                 msg,
-                { message: 'you need to tag a user in order to kick them!' },
-                'reply'
+                {
+                    message: 'Please enter a user ID to unban!'
+                },
+                'send'
             );
             return;
         }
 
-        if (!member.kickable) {
+        const bannedMember = await msg.client.fetchUser(bannedID);
+        const banned: boolean = await msg.guild.fetchBans().then(bans => {
+            const users = bans.filter(r => r === bannedMember);
+            if (!users.first()) {
+                return Promise.resolve(false);
+            } else {
+                return Promise.resolve(true);
+            }
+        });
+
+        if (!banned) {
             await this.respond(
                 msg,
                 {
-                    message: member.user.username + ' is not kickable.'
+                    message: `${bannedMember.username} is not banned!`
                 },
                 'send'
             );
@@ -59,19 +71,19 @@ class Kick implements Command<KickParams> {
         }
 
         try {
-            await member.send(
+            await msg.guild.unban(bannedMember, reason);
+
+            await bannedMember.send(
                 `You have been kicked from **${msg.guild.name}** for: ${reason}`
             );
 
             await this.respond(
                 msg,
                 {
-                    message: `**${member.user.username}** has been kicked for: ${reason}`
+                    message: `**${bannedMember.username}** has been kicked for: ${reason}`
                 },
                 'send'
             );
-
-            await member.kick(reason);
         } catch (e) {
             await msg.channel.send('Error: ' + e.message);
         }
@@ -97,4 +109,4 @@ class Kick implements Command<KickParams> {
     }
 }
 
-export default Kick;
+export default Unban;
