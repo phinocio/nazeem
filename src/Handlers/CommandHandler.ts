@@ -20,6 +20,9 @@ class CommandHandler {
             } else {
                 command.handle(msg);
             }
+        } else {
+            // delete message if it's not a command.
+            msg.delete();
         }
     }
 }
