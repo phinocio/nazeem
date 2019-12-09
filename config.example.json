@@ -10,9 +10,21 @@
         "avatar": "https://cdn.discordapp.com/avatars/643861836156108855/993b2f9c27b46d4f1289e5518c6473ee.png?size=2048"
     },
     "channels": {
-        "gatekeep": "643905832047869963"
+        "gatekeep": "399223244227346433",
+        "enlist": "433306572790431755"
     },
     "roles": {
-        "Prisoner": "643905868982779934"
+        "Prisoner": "399211910857228310"
+    },
+    "factions": {
+        "Bards College": "433306095847735296",
+        "College Of Winterhold": "433305726585405454",
+        "Companions": "433305825508065281",
+        "Dark Brotherhood": "433305885767368724",
+        "Dawnguard": "433306150977536002",
+        "Imperials": "433305938150031360",
+        "Stormcloaks": "433305995549343744",
+        "Thieves Guild": "433306039400660996",
+        "Vampire Clan": "433306218438590497"
     }
 }
