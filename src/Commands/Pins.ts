@@ -1,0 +1,33 @@
+import { Message } from 'discord.js';
+import {} from '../../config.json';
+import Command from '../Interfaces/Command';
+
+class Pins implements Command<undefined> {
+    identifier: string;
+    description: string;
+    constructor() {
+        this.identifier = 'Pins';
+        this.description = 'Show users how to check the pins.';
+    }
+
+    public async handle(msg: Message): Promise<void> {
+        try {
+            // TODO: The link will be stored in the DB once sqlite is set up. No point having it in config.json
+            await msg.channel.send('https://i.imgur.com/LETwjvd.gifv');
+        } catch (e) {
+            this.respond(msg, { message: e.message });
+        }
+
+        // No response.
+    }
+
+    protected async respond(msg: Message, data: object): Promise<void> {
+        try {
+            await msg.channel.send(data['message']);
+        } catch (e) {
+            console.error(`${this.identifier} response error: ${e.message}`);
+        }
+    }
+}
+
+export default Pins;
