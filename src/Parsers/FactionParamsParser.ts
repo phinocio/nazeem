@@ -14,8 +14,10 @@ function FactionParamsParser(src: Message, identifier: string): FactionParams {
     }
 
     for (const key in factions) {
-        if (key == faction) {
-            role = src.guild.roles.find(x => x.name == faction);
+        if (key.toLowerCase() == faction.toLowerCase()) {
+            role = src.guild.roles.find(
+                x => x.name.toLowerCase() == faction.toLowerCase()
+            );
         }
     }
 
