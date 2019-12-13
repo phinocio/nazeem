@@ -7,6 +7,7 @@ import Kick from './Kick';
 import Unban from './Unban';
 import Faction from './Faction';
 import Pins from './Pins';
+import Memsize from './Memsize';
 
 class CommandList {
     private commands: Array<Command<any>> = [
@@ -16,6 +17,7 @@ class CommandList {
         new Faction(),
         new Help(),
         new Kick(),
+        new Memsize(),
         new Pins(),
         new Unban()
     ];
