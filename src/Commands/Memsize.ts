@@ -21,7 +21,7 @@ class Memsize implements Command<MemsizeParams> {
             const memsize = (vram + ram - 2) * 1024;
             await this.respond(
                 msg,
-                { message: `your memsize is \`${memsize}\`` },
+                { message: `your \`VideoMemorySizeMB\` is \`${memsize}\`` },
                 'reply'
             );
         } else {
