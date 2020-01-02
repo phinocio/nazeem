@@ -31,7 +31,7 @@ class Clear implements Command<ClearParams> {
                 await this.respond(msg, { message: e.message });
             }
         } else {
-            await await this.respond(msg, {
+            await this.respond(msg, {
                 message:
                     'Please enter an amount of messages to clear from 1-100 (inclusive)!'
             });

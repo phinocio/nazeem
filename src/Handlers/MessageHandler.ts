@@ -23,13 +23,27 @@ class MessageHandler {
             const cmdMessage = msg.content
                 .substring(message.prefix.length)
                 .toLowerCase();
-            await this.cmdHandler.handle(cmdMessage, msg);
-        } else if (
+            try {
+                await this.cmdHandler.handle(cmdMessage, msg);
+            } catch (e) {
+                console.log(
+                    `Main command handler error: ${e.message}`,
+                    cmdMessage
+                );
+            }
+        }
+        if (
             msg.channel.id == channels.gatekeep &&
-            !msg.member.hasPermission('MANAGE_MESSAGES', true, true)
+            msg.member.hasPermission('MANAGE_MESSAGES', true, true)
         ) {
             // delete every message that's sent in gatekeep channel except those who have manage messages permission and are an admin..
-            await msg.delete();
+            try {
+                setTimeout(() => {
+                    msg.delete();
+                }, 1000);
+            } catch (e) {
+                console.log('Message already deleted');
+            }
         }
     }
 }

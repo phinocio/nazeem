@@ -16,9 +16,9 @@ class CommandHandler {
                 params = command.parser(msg, commandIdentifier);
             }
             if (params) {
-                command.handle(msg, params);
+                await command.handle(msg, params);
             } else {
-                command.handle(msg);
+                await command.handle(msg);
             }
         } else {
             // delete message if it's not a command.
