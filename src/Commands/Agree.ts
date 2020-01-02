@@ -18,7 +18,6 @@ class Agree implements Command<undefined> {
         ) {
             try {
                 await msg.member.removeRole(roles.Prisoner);
-                await msg.channel.send('Welcome to the server!');
             } catch (e) {
                 this.respond(msg, { message: e.message });
             }
