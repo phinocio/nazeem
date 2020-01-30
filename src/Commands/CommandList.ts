@@ -1,5 +1,6 @@
 import Command from '../Interfaces/Command';
 import Agree from './Agree';
+import Ask from './Ask';
 import Ban from './Ban';
 import Clear from './Clear';
 import Help from './Help';
@@ -12,6 +13,7 @@ import Memsize from './Memsize';
 class CommandList {
     private commands: Array<Command<any>> = [
         new Agree(),
+        new Ask(),
         new Ban(),
         new Clear(),
         new Faction(),
