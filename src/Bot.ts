@@ -1,4 +1,4 @@
-import Discord from 'discord.js';
+import Discord, { ClientUser } from 'discord.js';
 import { auth } from '../config.json';
 import EventHandler from './Handlers/EventHandler';
 
@@ -13,7 +13,7 @@ class Bot {
 
         this.client = new Discord.Client();
 
-        this.client.on('ready', () => this.ready());
+        this.client.on('ready', () => this.ready(this.client.user));
     }
 
     public async login(): Promise<void> {
@@ -24,12 +24,18 @@ class Bot {
         }
     }
 
-    private ready(): void {
-        console.log(`Logged in as ${this.client.user.tag}!`);
-        this.client.user.setActivity('Cloud District 9', { type: 'WATCHING' });
+    private ready(user: ClientUser | null): void {
+        if (user) {
+            console.log(`Logged in as ${user.tag}!`);
+            user.setActivity('Cloud District 9', {
+                type: 'WATCHING'
+            });
 
-        this.eventHandler = new EventHandler(this.client);
-        this.eventHandler.handle();
+            this.eventHandler = new EventHandler(this.client);
+            this.eventHandler.handle();
+        } else {
+            console.error('Something went wrong. User is Null');
+        }
     }
 }
 
