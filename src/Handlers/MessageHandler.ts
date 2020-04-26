@@ -20,6 +20,7 @@ class MessageHandler {
             console.log('Message has no member');
             return;
         }
+
         if (
             msg.content.startsWith(message.prefix) &&
             msg.content.length > message.prefix.length && // Prevent sending commands to bot that is just the prefix.
@@ -38,11 +39,12 @@ class MessageHandler {
                 );
             }
         }
+
+        // delete every message that's sent in gatekeep channel except those who have manage messages permission and are an admin or owner..
         if (
             msg.channel.id == channels.gatekeep &&
             !msg.member.hasPermission('MANAGE_MESSAGES')
         ) {
-            // delete every message that's sent in gatekeep channel except those who have manage messages permission and are an admin or owner..
             try {
                 setTimeout(() => {
                     msg.delete();
