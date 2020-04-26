@@ -3,8 +3,9 @@ import { channels, roles } from '../../config.json';
 import Command from '../Interfaces/Command';
 
 class Agree implements Command<undefined> {
-    identifier: string;
-    description: string;
+    public identifier: string;
+    public description: string;
+
     constructor() {
         this.identifier = 'Agree';
         this.description =
@@ -12,23 +13,40 @@ class Agree implements Command<undefined> {
     }
 
     public async handle(msg: Message): Promise<void> {
+        if (!msg.member) {
+            //TODO: Channel log
+            console.log('Message has no member. Error reee');
+            return;
+        }
+
         if (
             msg.channel.id === channels.gatekeep &&
-            msg.member.roles.has(roles.Prisoner)
+            msg.member.roles.cache.get(roles.Prisoner)
         ) {
             try {
-                await msg.member.removeRole(roles.Prisoner);
+                await msg.member.roles.remove(roles.Prisoner);
             } catch (e) {
-                this.respond(msg, { message: e.message });
+                this.respond(msg, { message: e.message }, 'send');
             }
         }
 
         // No response.
     }
 
-    protected async respond(msg: Message, data: object): Promise<void> {
+    protected async respond(
+        msg: Message,
+        data: object,
+        type: string
+    ): Promise<void> {
         try {
-            await msg.channel.send(data['message']);
+            switch (type) {
+                case 'send':
+                    await msg.channel.send(data['message']);
+                    break;
+                case 'reply':
+                    await msg.reply(data['message']);
+                    break;
+            }
         } catch (e) {
             console.error(`${this.identifier} response error: ${e.message}`);
         }

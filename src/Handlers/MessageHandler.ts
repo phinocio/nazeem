@@ -14,11 +14,16 @@ class MessageHandler {
     }
 
     public async handle(msg: Message): Promise<void> {
+        //TEMP FIX, shouldn't happen anyway.
+        if (!msg.member) {
+            //TODO: Channel Log
+            console.log('Message has no member');
+            return;
+        }
         if (
             msg.content.startsWith(message.prefix) &&
             msg.content.length > message.prefix.length && // Prevent sending commands to bot that is just the prefix.
-            !msg.author.bot &&
-            msg.guild !== null
+            !msg.author.bot // Prevent bot from responding to itself.
         ) {
             const cmdMessage = msg.content
                 .substring(message.prefix.length)
@@ -26,6 +31,7 @@ class MessageHandler {
             try {
                 await this.cmdHandler.handle(cmdMessage, msg);
             } catch (e) {
+                // TODO: Channel log
                 console.log(
                     `Main command handler error: ${e.message}`,
                     cmdMessage
@@ -34,9 +40,9 @@ class MessageHandler {
         }
         if (
             msg.channel.id == channels.gatekeep &&
-            !msg.member.hasPermission('MANAGE_MESSAGES', true, true)
+            !msg.member.hasPermission('MANAGE_MESSAGES')
         ) {
-            // delete every message that's sent in gatekeep channel except those who have manage messages permission and are an admin..
+            // delete every message that's sent in gatekeep channel except those who have manage messages permission and are an admin or owner..
             try {
                 setTimeout(() => {
                     msg.delete();
