@@ -14,7 +14,7 @@ class Bot {
 
         this.client = new Discord.Client();
 
-        this.client.on('ready', () => this.ready(this.client.user));
+        this.client.once('ready', () => this.ready(this.client.user));
 
         this.client.on('error', (error) => {
             console.error(
