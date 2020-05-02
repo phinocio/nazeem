@@ -12,7 +12,7 @@ class Ask implements Command<undefined> {
     public async handle(msg: Message): Promise<void> {
         this.respond(msg, {
             message:
-                'Please dont ask if you can ask a question, simply ask the question. Someone will eventually get around to answering you, we have a very helpfull community.'
+                'Please dont ask if you can ask a question, simply ask the question. Someone will eventually get around to answering you, we have a very helpful community.'
         });
 
         // No response.
