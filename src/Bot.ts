@@ -7,6 +7,7 @@ class Bot {
     private TOKEN = '';
     private client: Discord.Client;
     private eventHandler: EventHandler | undefined;
+    private loggedIn = false;
 
     public constructor() {
         this.TOKEN = auth.token;
@@ -14,13 +15,28 @@ class Bot {
         this.client = new Discord.Client();
 
         this.client.on('ready', () => this.ready(this.client.user));
+
+        this.client.on('error', (error) => {
+            console.error(
+                'The websocket connection encountered an error:',
+                error
+            );
+        });
+
+        process.on('unhandledRejection', (error) => {
+            console.error('Unhandled promise rejection:', error);
+        });
     }
 
     public async login(): Promise<void> {
-        try {
-            await this.client.login(this.TOKEN);
-        } catch (err) {
-            console.error(`Error: ${err.message}`);
+        if (!this.loggedIn) {
+            try {
+                await this.client.login(this.TOKEN);
+            } catch (err) {
+                console.error(`Error: ${err.message}`);
+            }
+        } else {
+            console.error('Bot is already logged in!');
         }
     }
 
