@@ -1,6 +1,6 @@
 {
     "name": "nazeem",
-    "version": "0.0.1",
+    "version": "0.1.2",
     "description": "Custom Discord bot for Belmont Boy server",
     "main": "dist/index.js",
     "repository": {
