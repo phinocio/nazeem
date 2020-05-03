@@ -71,8 +71,6 @@ class Ban implements Command<BanParams> {
         } catch (e) {
             await msg.channel.send('Error: ' + e.message);
         }
-
-        console.log(reason);
     }
 
     protected async respond(
