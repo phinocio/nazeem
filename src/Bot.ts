@@ -7,6 +7,7 @@ class Bot {
     private TOKEN = '';
     private client: Discord.Client;
     private eventHandler: EventHandler | undefined;
+    private loggedIn = false;
 
     public constructor() {
         this.TOKEN = auth.token;
@@ -28,10 +29,15 @@ class Bot {
     }
 
     public async login(): Promise<void> {
-        try {
-            await this.client.login(this.TOKEN);
-        } catch (err) {
-            console.error(`Error: ${err.message}`);
+        if (!this.loggedIn) {
+            try {
+                await this.client.login(this.TOKEN);
+                this.loggedIn = true;
+            } catch (err) {
+                console.error(`Error: ${err.message}`);
+            }
+        } else {
+            console.log('Bot is already logged in.');
         }
     }
 
