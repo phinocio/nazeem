@@ -19,7 +19,10 @@ class EventHandler {
         });
 
         this.client.on('message', (msg) => {
-            this.msgHandler.handle(msg);
+            // Ensure bot doesn't respond to PM commands/messages.
+            if (msg.guild !== null) {
+                this.msgHandler.handle(msg);
+            }
         });
     }
 }

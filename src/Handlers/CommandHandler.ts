@@ -12,9 +12,11 @@ class CommandHandler {
         const command = this.commands.get(commandIdentifier.toLowerCase());
         if (command) {
             let params = '';
+
             if (typeof command.parser === 'function') {
                 params = command.parser(msg, commandIdentifier);
             }
+
             if (params) {
                 await command.handle(msg, params);
             } else {

@@ -6,7 +6,7 @@ class CommandRegistry {
 
     constructor(commands: Array<Command<any>>) {
         this.commands = new Map();
-        commands.forEach(comm =>
+        commands.forEach((comm) =>
             this.commands.set(comm.identifier.toLowerCase(), comm)
         );
     }
