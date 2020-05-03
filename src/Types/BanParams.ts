@@ -1,7 +1,7 @@
-import { UserResolvable } from 'discord.js';
+import { GuildMember } from 'discord.js';
 
 type BanParams = {
-    member: UserResolvable | undefined;
+    member: GuildMember | undefined;
     reason: string | undefined;
 };
 
