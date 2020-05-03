@@ -14,6 +14,13 @@ class EventHandler {
     }
 
     public async handle(): Promise<void> {
+        this.client.on('error', (error) => {
+            console.error(
+                'The websocket connection encountered an error:',
+                error
+            );
+        });
+
         this.client.on('guildMemberAdd', (member) => {
             this.memberJoin.handle(member);
         });

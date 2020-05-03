@@ -14,17 +14,6 @@ class Bot {
         this.client = new Discord.Client();
 
         this.client.on('ready', () => this.ready(this.client.user));
-
-        this.client.on('error', (error) => {
-            console.error(
-                'The websocket connection encountered an error:',
-                error
-            );
-        });
-
-        process.on('unhandledRejection', (error) => {
-            console.error('Unhandled promise rejection:', error);
-        });
     }
 
     public async login(): Promise<void> {
