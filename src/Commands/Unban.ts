@@ -18,14 +18,13 @@ class Unban implements Command<UnbanParams> {
 
     public async handle(msg: Message, params: UnbanParams): Promise<void> {
         const { member, reason } = await params;
-        console.log(member);
 
         if (!member) {
             await this.respond(
                 msg,
                 {
                     message:
-                        'you need to tag a user or provide a UserID in order to unban them!'
+                        'you need to tag a user or provide a UserID in order to unban them, or the user is not banned!'
                 },
                 'reply'
             );
@@ -42,7 +41,17 @@ class Unban implements Command<UnbanParams> {
 
             return;
         }
-        await msg.guild?.members.unban(member, reason);
+
+        try {
+            await msg.guild?.members.unban(member, reason);
+            await this.respond(
+                msg,
+                { message: `**${member.username}** has been unbanned` },
+                'send'
+            );
+        } catch (error) {
+            await this.respond(msg, { message: 'User is not banned' }, 'send');
+        }
     }
 
     protected async respond(

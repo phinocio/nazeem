@@ -7,18 +7,20 @@ async function UnbanParamsParser(
     identifier: string
 ): Promise<UnbanParams> {
     let member = undefined;
+    let user = undefined;
 
     if (src.mentions.members && src.mentions.members.size != 0) {
-        member = src.mentions.members.first();
+        user = src.mentions.members.first();
     } else {
-        const memberId = src.content.split(' ')[1];
-        if (memberId) {
-            try {
-                member = (await src.guild?.members.fetch(memberId)) ?? memberId;
-            } catch (e) {
-                // TODO: Channel log
-                console.log(e.message, 'ID: ', memberId);
-            }
+        user = src.content.split(' ')[1];
+    }
+
+    if (user) {
+        try {
+            member = (await src.guild?.fetchBan(user))?.user;
+        } catch (e) {
+            // TODO: Channel log
+            console.log(e.message, 'ID: ', user);
         }
     }
 

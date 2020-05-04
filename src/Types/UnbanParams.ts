@@ -1,7 +1,7 @@
-import { GuildMember } from 'discord.js';
+import { User } from 'discord.js';
 
 type UnbanParams = {
-    member: GuildMember | string | undefined;
+    member: User | undefined;
     reason: string | undefined;
 };
 
