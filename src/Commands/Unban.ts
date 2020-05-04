@@ -13,7 +13,7 @@ class Unban implements Command<UnbanParams> {
         this.identifier = 'Unban';
         this.parser = UnbanParamsParser;
         this.description = 'Unban a user with optional reason.';
-        this.usage = '!uban <UserTag/UserID> <reason>';
+        this.usage = '!uban <UserTag/UserID> <reason?>';
     }
 
     public async handle(msg: Message, params: UnbanParams): Promise<void> {

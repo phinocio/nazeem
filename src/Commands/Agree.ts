@@ -5,11 +5,13 @@ import Command from '../Interfaces/Command';
 class Agree implements Command<undefined> {
     public identifier: string;
     public description: string;
+    public usage: string;
 
     constructor() {
         this.identifier = 'Agree';
         this.description =
             'Agree to server rules and remove Prisoner role, granting access to channels.';
+        this.usage = '!agree';
     }
 
     public async handle(msg: Message): Promise<void> {

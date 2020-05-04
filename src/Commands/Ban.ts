@@ -13,7 +13,7 @@ class Ban implements Command<BanParams> {
         this.identifier = 'Ban';
         this.parser = BanParamsParser;
         this.description = 'Ban a user with optional reason.';
-        this.usage = '!ban <UserTag/UserID> <reason>';
+        this.usage = '!ban <UserTag/UserID> <reason?>';
     }
 
     public async handle(msg: Message, params: BanParams): Promise<void> {

@@ -5,14 +5,17 @@ import FactionParams from '../Types/FactionParams';
 import FactionParamsParser from '../Parsers/FactionParamsParser';
 
 class Faction implements Command<FactionParams> {
-    identifier: string;
-    description: string;
-    numMsg: number;
-    parser: (src: Message, identifier: string) => FactionParams;
+    public identifier: string;
+    public parser: (src: Message, identifier: string) => FactionParams;
+    public description: string;
+    public usage: string;
+    private numMsg: number;
+
     constructor() {
         this.identifier = 'Faction';
-        this.description = 'Select a faction to join.';
         this.parser = FactionParamsParser;
+        this.description = 'Select a faction to join.';
+        this.usage = '!faction <remove | factionName>';
     }
 
     public async handle(msg: Message, param: FactionParams): Promise<void> {
