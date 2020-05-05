@@ -2,6 +2,8 @@ import Command from '../Interfaces/Command';
 import Agree from './Agree';
 import Ban from './Ban';
 import Faction from './Faction';
+import Kick from './Kick';
+import Memsize from './Memsize';
 import Unban from './Unban';
 
 class CommandList {
@@ -9,6 +11,8 @@ class CommandList {
         new Agree(),
         new Ban(),
         new Faction(),
+        new Kick(),
+        new Memsize(),
         new Unban()
     ];
 
