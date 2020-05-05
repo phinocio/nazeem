@@ -20,6 +20,7 @@ class Clear implements Command<ClearParams> {
     public async handle(msg: Message, param: ClearParams): Promise<void> {
         const { amount } = param;
 
+        // This *should* never happen, but gets rid of TS error, and more safe than msg.member && in next if
         if (!msg.member) {
             await this.respond(msg, {
                 message: 'Something went wrong. msg.member is falsy.'
