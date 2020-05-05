@@ -1,7 +1,6 @@
 import { Message } from 'discord.js';
 import { message, channels } from '../../config.json';
 import CommandHandler from './CommandHandler';
-import CommandList from '../Commands/CommandList';
 import CommandRegistry from '../Commands/CommandRegistry';
 
 class MessageHandler {
@@ -9,7 +8,7 @@ class MessageHandler {
     private cmdRegistry: CommandRegistry;
 
     public constructor() {
-        this.cmdRegistry = new CommandRegistry(new CommandList().getCommands());
+        this.cmdRegistry = CommandRegistry.getInstance();
         this.cmdHandler = new CommandHandler(this.cmdRegistry);
     }
 
