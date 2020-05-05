@@ -4,65 +4,61 @@ import KickParams from '../Types/KickParams';
 import KickParamsParser from '../Parsers/KickParamsParser';
 
 class Kick implements Command<KickParams> {
-    identifier: string;
-    parser: (src: Message, identifier: string) => KickParams;
-    description: string;
+    public identifier: string;
+    public parser: (src: Message, identifier: string) => Promise<KickParams>;
+    public description: string;
+    public usage: string;
 
     constructor() {
         this.identifier = 'Kick';
         this.parser = KickParamsParser;
         this.description = 'Kick a user with optional reason.';
+        this.usage = '!kick <UserTag/UserID> <reason?>';
     }
 
     public async handle(msg: Message, params: KickParams): Promise<void> {
-        const { member, reason } = params;
-        if (!msg.member.hasPermission('KICK_MEMBERS')) {
-            await this.respond(
-                msg,
-                {
-                    message: "You don't have permission to kick people!"
-                },
-                'send'
-            );
-            return;
-        }
-
-        if (!msg.guild.me.hasPermission(['KICK_MEMBERS', 'ADMINISTRATOR'])) {
-            await this.respond(
-                msg,
-                {
-                    message: "I don't have permission to kick people!"
-                },
-                'send'
-            );
-            return;
-        }
-
+        const { member, reason } = await params;
         if (!member) {
             await this.respond(
                 msg,
-                { message: 'you need to tag a user in order to kick them!' },
+                {
+                    message:
+                        'you need to tag a user or provide a UserID in order to Kick them!'
+                },
                 'reply'
             );
+
+            return;
+        }
+
+        if (msg.member && !msg.member.hasPermission('KICK_MEMBERS')) {
+            await this.respond(
+                msg,
+                { message: "You don't have permission to kick users!" },
+                'send'
+            );
+
             return;
         }
 
         if (!member.kickable) {
             await this.respond(
                 msg,
-                {
-                    message: member.user.username + ' is not kickable.'
-                },
+                { message: `${member.user.username} is not kickable!` },
                 'send'
             );
+
             return;
+        }
+        try {
+            await member.send(
+                `You have been kicked from **${msg.guild?.name}** for: ${reason}`
+            );
+        } catch (e) {
+            await msg.channel.send('Error: ' + e.message);
         }
 
         try {
-            await member.send(
-                `You have been kicked from **${msg.guild.name}** for: ${reason}`
-            );
-
             await this.respond(
                 msg,
                 {

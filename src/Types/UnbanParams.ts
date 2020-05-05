@@ -1,5 +1,7 @@
+import { User } from 'discord.js';
+
 type UnbanParams = {
-    bannedID: string | undefined;
+    member: User | undefined;
     reason: string | undefined;
 };
 

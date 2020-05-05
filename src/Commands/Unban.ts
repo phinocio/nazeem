@@ -4,88 +4,53 @@ import UnbanParams from '../Types/UnbanParams';
 import UnbanParamsParser from '../Parsers/UnbanParamsParser';
 
 class Unban implements Command<UnbanParams> {
-    identifier: string;
-    parser: (src: Message, identifier: string) => UnbanParams;
-    description: string;
+    public identifier: string;
+    public parser: (src: Message, identifier: string) => Promise<UnbanParams>;
+    public description: string;
+    public usage: string;
 
     constructor() {
         this.identifier = 'Unban';
         this.parser = UnbanParamsParser;
-        this.description = 'Unban a user.';
+        this.description = 'Unban a user with optional reason.';
+        this.usage = '!uban <UserTag/UserID> <reason?>';
     }
 
     public async handle(msg: Message, params: UnbanParams): Promise<void> {
-        const { bannedID, reason } = params;
-        if (!msg.member.hasPermission(['BAN_MEMBERS', 'ADMINISTRATOR'])) {
+        const { member, reason } = await params;
+
+        if (!member) {
             await this.respond(
                 msg,
                 {
-                    message: "You don't have permission to unban people!"
+                    message:
+                        'you need to tag a user or provide a UserID in order to unban them, or the user is not banned!'
                 },
-                'send'
+                'reply'
             );
+
             return;
         }
 
-        if (!msg.guild.me.hasPermission(['BAN_MEMBERS', 'ADMINISTRATOR'])) {
+        if (msg.member && !msg.member.hasPermission('BAN_MEMBERS')) {
             await this.respond(
                 msg,
-                {
-                    message: "I don't have permission to unban people!"
-                },
+                { message: "You don't have permission to unban users!" },
                 'send'
             );
-            return;
-        }
 
-        if (!bannedID) {
-            await this.respond(
-                msg,
-                {
-                    message: 'Please enter a user ID to unban!'
-                },
-                'send'
-            );
-            return;
-        }
-
-        const bannedMember = await msg.client.fetchUser(bannedID);
-        const banned: boolean = await msg.guild.fetchBans().then(bans => {
-            const users = bans.filter(r => r === bannedMember);
-            if (!users.first()) {
-                return Promise.resolve(false);
-            } else {
-                return Promise.resolve(true);
-            }
-        });
-
-        if (!banned) {
-            await this.respond(
-                msg,
-                {
-                    message: `${bannedMember.tag} is not banned!`
-                },
-                'send'
-            );
             return;
         }
 
         try {
-            await msg.guild.unban(bannedMember, reason);
-
-            await bannedMember.send(
-                `You have been unbanned from **${msg.guild.name}** for: ${reason}`
-            );
-
+            await msg.guild?.members.unban(member, reason);
             await this.respond(
                 msg,
-                {
-                    message: `**${bannedMember.tag}** has been unbanned for: ${reason}`
-                },
+                { message: `**${member.username}** has been unbanned` },
                 'send'
             );
-        } catch (e) {
-            await msg.channel.send('Error: ' + e.message);
+        } catch (error) {
+            await this.respond(msg, { message: 'User is not banned' }, 'send');
         }
     }
 

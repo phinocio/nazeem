@@ -3,11 +3,14 @@ import {} from '../../config.json';
 import Command from '../Interfaces/Command';
 
 class Pins implements Command<undefined> {
-    identifier: string;
-    description: string;
+    public identifier: string;
+    public description: string;
+    public usage: string;
+
     constructor() {
         this.identifier = 'Pins';
         this.description = 'Show users how to check the pins.';
+        this.usage = '!pins';
     }
 
     public async handle(msg: Message): Promise<void> {

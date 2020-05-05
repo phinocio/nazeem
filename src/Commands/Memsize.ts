@@ -4,14 +4,16 @@ import MemsizeParams from '../Types/MemsizeParams';
 import MemsizeParamsParser from '../Parsers/MemsizeParamsParser';
 
 class Memsize implements Command<MemsizeParams> {
-    identifier: string;
-    parser: (src: Message, identifier: string) => MemsizeParams;
-    description: string;
+    public identifier: string;
+    public parser: (src: Message, identifier: string) => MemsizeParams;
+    public description: string;
+    public usage: string;
 
     constructor() {
         this.identifier = 'Memsize';
         this.parser = MemsizeParamsParser;
         this.description = 'Calculate the memsize for enblocal.ini';
+        this.usage = '!memsize <vramInGB> <memInGB>';
     }
 
     public async handle(msg: Message, params: MemsizeParams): Promise<void> {
@@ -28,8 +30,7 @@ class Memsize implements Command<MemsizeParams> {
             await this.respond(
                 msg,
                 {
-                    message:
-                        'please enter in the format `!memsize <vramInGB> <ramInGB>`'
+                    message: `please enter in the format \`${this.usage}\``
                 },
                 'reply'
             );

@@ -1,40 +1,64 @@
-import { Message, RichEmbed } from 'discord.js';
-import CommandList from './CommandList';
+import { Message, MessageEmbed } from 'discord.js';
 import { bot } from '../../config.json';
 import Command from '../Interfaces/Command';
+import CommandList from '../Commands/CommandList';
 import HelpParams from '../Types/HelpParams';
 import HelpParamsParser from '../Parsers/HelpParamsParser';
 
 class Help implements Command<HelpParams> {
-    identifier: string;
-    parser: (src: Message, identifier: string) => HelpParams | undefined;
-    description: string;
+    public identifier: string;
+    public parser: (src: Message, identifier: string) => HelpParams | undefined;
+    public description: string;
+    public usage: string;
+
     constructor() {
         this.identifier = 'Help';
         this.parser = HelpParamsParser;
         this.description = 'Get help on commands.';
+        this.usage = '!help <command?>';
     }
     public async handle(msg: Message, param: HelpParams): Promise<void> {
         // do things
-        const commands = new CommandList().getCommands();
-        if (param) {
-            //return this.respondCommand(msg, commandsparam.command);
-        }
+        const { command } = param;
 
-        return this.respond(msg, commands);
+        if (!command) {
+            return this.generalHelp(msg);
+        } else {
+            return this.commandHelp(msg, command);
+        }
     }
 
-    protected async respond(msg: Message, data: object): Promise<void> {
-        const embed = new RichEmbed();
+    protected async generalHelp(msg: Message): Promise<void> {
+        const embed = new MessageEmbed();
         embed.setAuthor(`${bot.name} Help Menu`, bot.avatar);
         embed.setThumbnail(bot.avatar);
         embed.setColor(0x00ae86);
 
-        for (const key in data) {
-            embed.addField(data[key].identifier, data[key].description);
+        const commands = new CommandList().getCommands();
+        for (const command of commands) {
+            embed.addField(command.identifier, command.description);
         }
+        embed.setFooter(`Type ${this.usage} for specific command info.`);
+        try {
+            await msg.channel.send(embed);
+        } catch (e) {
+            console.error('Error from help command: ' + e.message);
+        }
+    }
 
-        embed.setFooter('Type !help {command} for specific command info.');
+    protected async commandHelp(
+        msg: Message,
+        command: Command<any>
+    ): Promise<void> {
+        const embed = new MessageEmbed();
+        embed.setAuthor(`${command.identifier} Help Menu`, bot.avatar);
+        embed.setThumbnail(bot.avatar);
+        embed.setColor(0x00ae86);
+        embed.setDescription(command.description);
+        embed.addField('Usage', command.usage);
+        embed.setFooter(
+            "A `?` in a command param means it's optional. For example <name?> would be an optional param."
+        );
 
         try {
             await msg.channel.send(embed);
@@ -42,6 +66,44 @@ class Help implements Command<HelpParams> {
             console.error('Error from help command: ' + e.message);
         }
     }
+
+    protected async respond(
+        msg: Message,
+        data: object,
+        type: string
+    ): Promise<void> {
+        try {
+            switch (type) {
+                case 'send':
+                    await msg.channel.send(data['message']);
+                    break;
+                case 'reply':
+                    await msg.reply(data['message']);
+                    break;
+            }
+        } catch (e) {
+            console.error(`${this.identifier} response error: ${e.message}`);
+        }
+    }
+
+    // protected async respond(msg: Message, data: object): Promise<void> {
+    //     const embed = new RichEmbed();
+    //     embed.setAuthor(`${bot.name} Help Menu`, bot.avatar);
+    //     embed.setThumbnail(bot.avatar);
+    //     embed.setColor(0x00ae86);
+
+    //     for (const key in data) {
+    //         embed.addField(data[key].identifier, data[key].description);
+    //     }
+
+    //     embed.setFooter('Type !help {command} for specific command info.');
+
+    //     try {
+    //         await msg.channel.send(embed);
+    //     } catch (e) {
+    //         console.error('Error from help command: ' + e.message);
+    //     }
+    // }
 
     // private async respondCommand(
     //     msg: Message,

@@ -14,12 +14,22 @@ class EventHandler {
     }
 
     public async handle(): Promise<void> {
+        this.client.on('error', (error) => {
+            console.error(
+                'The websocket connection encountered an error:',
+                error
+            );
+        });
+
         this.client.on('guildMemberAdd', (member) => {
             this.memberJoin.handle(member);
         });
 
         this.client.on('message', (msg) => {
-            this.msgHandler.handle(msg);
+            // Ensure bot doesn't respond to PM commands/messages.
+            if (msg.guild !== null) {
+                this.msgHandler.handle(msg);
+            }
         });
     }
 }

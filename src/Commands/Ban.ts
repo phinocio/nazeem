@@ -4,54 +4,61 @@ import BanParams from '../Types/BanParams';
 import BanParamsParser from '../Parsers/BanParamsParser';
 
 class Ban implements Command<BanParams> {
-    identifier: string;
-    parser: (src: Message, identifier: string) => BanParams;
-    description: string;
+    public identifier: string;
+    public parser: (src: Message, identifier: string) => Promise<BanParams>;
+    public description: string;
+    public usage: string;
 
     constructor() {
         this.identifier = 'Ban';
         this.parser = BanParamsParser;
         this.description = 'Ban a user with optional reason.';
+        this.usage = '!ban <UserTag/UserID> <reason?>';
     }
 
     public async handle(msg: Message, params: BanParams): Promise<void> {
-        const { member, reason } = params;
-        if (!msg.member.hasPermission('BAN_MEMBERS', true, true)) {
-            await this.respond(
-                msg,
-                {
-                    message: "You don't have permission to ban people!"
-                },
-                'send'
-            );
-            return;
-        }
-
+        const { member, reason } = await params;
         if (!member) {
             await this.respond(
                 msg,
-                { message: 'you need to tag a user in order to ban them!' },
+                {
+                    message:
+                        'you need to tag a user or provide a UserID in order to ban them!'
+                },
                 'reply'
             );
+
+            return;
+        }
+
+        if (msg.member && !msg.member.hasPermission('BAN_MEMBERS')) {
+            await this.respond(
+                msg,
+                { message: "You don't have permission to ban users!" },
+                'send'
+            );
+
             return;
         }
 
         if (!member.bannable) {
             await this.respond(
                 msg,
-                {
-                    message: `${member.user.username} is not bannable.`
-                },
+                { message: `${member.user.username} is not bannable!` },
                 'send'
             );
+
             return;
+        }
+        try {
+            await member.send(
+                `You have been banned from **${msg.guild?.name}** for: ${reason}`
+            );
+        } catch (e) {
+            await msg.channel.send('Error: ' + e.message);
         }
 
         try {
-            await member.send(
-                `You have been banned from **${msg.guild.name}** for: ${reason}`
-            );
-
             await this.respond(
                 msg,
                 {
@@ -60,7 +67,7 @@ class Ban implements Command<BanParams> {
                 'send'
             );
 
-            await member.ban(reason);
+            await member.ban({ reason });
         } catch (e) {
             await msg.channel.send('Error: ' + e.message);
         }

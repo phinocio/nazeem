@@ -1,7 +1,7 @@
 {
     "name": "nazeem",
-    "version": "0.1.2",
-    "description": "Custom Discord bot for Belmont Boy server",
+    "version": "0.2.0",
+    "description": "Custom Discord bot for Dylan Perry's Ultimate Skyrim server",
     "main": "dist/index.js",
     "repository": {
         "type": "git",
@@ -31,7 +31,7 @@
         "typescript": "^3.8.3"
     },
     "dependencies": {
-        "discord.js": "11.5",
+        "discord.js": "^12.2.0",
         "ts-node": "^8.9.0",
         "winston": "^3.2.1"
     }

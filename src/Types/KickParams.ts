@@ -1,7 +1,7 @@
 import { GuildMember } from 'discord.js';
 
 type KickParams = {
-    member: GuildMember;
+    member: GuildMember | undefined;
     reason: string | undefined;
 };
 

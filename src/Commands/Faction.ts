@@ -5,50 +5,80 @@ import FactionParams from '../Types/FactionParams';
 import FactionParamsParser from '../Parsers/FactionParamsParser';
 
 class Faction implements Command<FactionParams> {
-    identifier: string;
-    description: string;
-    numMsg: number;
-    parser: (src: Message, identifier: string) => FactionParams;
+    public identifier: string;
+    public parser: (src: Message, identifier: string) => FactionParams;
+    public description: string;
+    public usage: string;
+    private numMsg: number;
+
     constructor() {
         this.identifier = 'Faction';
-        this.description = 'Select a faction to join.';
         this.parser = FactionParamsParser;
+        this.description = 'Select a faction to join.';
+        this.usage = '!faction <remove | factionName>';
     }
 
     public async handle(msg: Message, param: FactionParams): Promise<void> {
         const { role } = param;
+        console.log(role);
         this.numMsg = 1;
 
         // Used to bulk delete messages after the command to keep the channel clean.
 
-        if (msg.channel.id != channels.enlist) {
+        if (msg.channel.id !== channels.enlist) {
             // do nothing
             return;
         }
 
+        if (!msg.member) {
+            return;
+        }
+
         if (role == undefined) {
-            await this.respond(msg, {
-                message: 'Please enter a faction to join'
-            });
+            await this.respond(
+                msg,
+                {
+                    message: 'Please enter a faction to join'
+                },
+                'send'
+            );
             this.numMsg++;
         } else if (role == 'remove') {
             await this.removeRoles(msg);
-            await this.respond(msg, {
-                message: 'You have been removed from your faction'
-            });
+            await this.respond(
+                msg,
+                {
+                    message: 'You have been removed from your faction'
+                },
+                'send'
+            );
             this.numMsg++;
-        } else if (typeof role != 'string' && msg.member.roles.has(role.id)) {
-            await this.respond(msg, {
-                message: 'You already belong to ' + role.name
-            });
+        } else if (
+            typeof role != 'string' &&
+            msg.member.roles.cache.get(role.id)
+        ) {
+            await this.respond(
+                msg,
+                {
+                    message: 'You already belong to ' + role.name
+                },
+                'send'
+            );
             this.numMsg++;
-        } else if (typeof role != 'string' && !msg.member.roles.has(role.id)) {
+        } else if (
+            typeof role != 'string' &&
+            !msg.member.roles.cache.get(role.id)
+        ) {
             this.enlistUser(msg, role);
         } else {
-            await this.respond(msg, {
-                message:
-                    "Something went wrong and I don't know what. contact @Phinocio."
-            });
+            await this.respond(
+                msg,
+                {
+                    message:
+                        "Something went wrong and I don't know what. contact @Phinocio."
+                },
+                'send'
+            );
             this.numMsg++;
         }
 
@@ -57,9 +87,20 @@ class Faction implements Command<FactionParams> {
         }, 2000);
     }
 
-    protected async respond(msg: Message, data: object): Promise<void> {
+    protected async respond(
+        msg: Message,
+        data: object,
+        type: string
+    ): Promise<void> {
         try {
-            await msg.channel.send(data['message']);
+            switch (type) {
+                case 'send':
+                    await msg.channel.send(data['message']);
+                    break;
+                case 'reply':
+                    await msg.reply(data['message']);
+                    break;
+            }
         } catch (e) {
             console.error(`${this.identifier} response error: ${e.message}`);
         }
@@ -68,12 +109,16 @@ class Faction implements Command<FactionParams> {
     protected async removeRoles(msg: Message): Promise<void> {
         try {
             for (const faction in factions) {
-                if (msg.member.roles.has(factions[faction])) {
-                    await msg.member.removeRole(factions[faction]);
+                if (
+                    msg.member &&
+                    msg.member.roles.cache.get(factions[faction])
+                ) {
+                    await msg.member.roles.remove(factions[faction]);
                 }
             }
         } catch (e) {
-            await this.respond(msg, { message: e.message });
+            // TODO: Channel log
+            console.log('Faction remove error:', e.message);
         }
     }
 
@@ -81,13 +126,18 @@ class Faction implements Command<FactionParams> {
         try {
             // Remove role.
             await this.removeRoles(msg);
-            await msg.member.addRole(role);
-            await this.respond(msg, {
-                message: 'You have been added to ' + role.name
-            });
+            await msg.member?.roles.add(role);
+            await this.respond(
+                msg,
+                {
+                    message: 'You have been added to ' + role.name
+                },
+                'send'
+            );
             this.numMsg++;
         } catch (e) {
-            await this.respond(msg, { message: e.message });
+            // TODO: Channel log
+            console.log('Faction add error:', e.message);
         }
     }
 }

@@ -2,11 +2,14 @@ import { Message } from 'discord.js';
 import Command from '../Interfaces/Command';
 
 class Ask implements Command<undefined> {
-    identifier: string;
-    description: string;
+    public identifier: string;
+    public description: string;
+    public usage: string;
+
     constructor() {
         this.identifier = 'Ask';
         this.description = 'Just ~~dance~~ ask!';
+        this.usage = '!ask';
     }
 
     public async handle(msg: Message): Promise<void> {

@@ -1,5 +1,7 @@
+import Command from '../Interfaces/Command';
+
 type HelpParams = {
-    command: string | undefined;
+    command: Command<any> | undefined;
 };
 
 export default HelpParams;
