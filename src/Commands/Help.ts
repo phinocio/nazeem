@@ -40,7 +40,7 @@ class Help implements Command<HelpParams> {
         }
         embed.setFooter(`Type ${this.usage} for specific command info.`);
         try {
-            await msg.channel.send(embed);
+            await this.respond(msg, { message: embed }, 'send');
         } catch (e) {
             console.error('Error from help command: ' + e.message);
         }
@@ -61,7 +61,7 @@ class Help implements Command<HelpParams> {
         );
 
         try {
-            await msg.channel.send(embed);
+            await this.respond(msg, { message: embed }, 'send');
         } catch (e) {
             console.error('Error from help command: ' + e.message);
         }
