@@ -53,7 +53,7 @@ class Help implements Command<HelpParams> {
         const embed = new MessageEmbed();
         embed.setAuthor(`${command.identifier} Help Menu`, bot.avatar);
         embed.setThumbnail(bot.avatar);
-        embed.setColor(0x00ae86);
+        embed.setColor('#00ae86');
         embed.setDescription(command.description);
         embed.addField('Usage', command.usage);
         embed.setFooter(
