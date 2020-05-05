@@ -42,7 +42,8 @@ class MessageHandler {
 
         // delete every message that's sent in gatekeep channel except those who have manage messages permission and are an admin or owner..
         if (
-            msg.channel.id == channels.gatekeep &&
+            (msg.channel.id == channels.gatekeep ||
+                msg.channel.id == channels.enlist) &&
             !msg.member.hasPermission('MANAGE_MESSAGES')
         ) {
             try {
