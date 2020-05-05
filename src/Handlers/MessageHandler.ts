@@ -46,8 +46,8 @@ class MessageHandler {
             !msg.member.hasPermission('MANAGE_MESSAGES')
         ) {
             try {
-                setTimeout(() => {
-                    msg.delete();
+                setTimeout(async () => {
+                    await msg.delete();
                 }, 1000);
             } catch (e) {
                 console.log('Message already deleted');
