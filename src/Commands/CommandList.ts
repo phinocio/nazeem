@@ -4,6 +4,7 @@ import Ban from './Ban';
 import Faction from './Faction';
 import Kick from './Kick';
 import Memsize from './Memsize';
+import Pins from './Pins';
 import Unban from './Unban';
 
 class CommandList {
@@ -13,6 +14,7 @@ class CommandList {
         new Faction(),
         new Kick(),
         new Memsize(),
+        new Pins(),
         new Unban()
     ];
 
