@@ -10,8 +10,8 @@ class OptIn implements Command<undefined> {
 	constructor() {
 		this.identifier = 'OptIn';
 		this.description =
-			'Opt in having a (non-pinging) message show up whenever you go live on Twitch streaming Ultimate Skyrim';
-		this.usage = '!optin';
+			'Opt out of having a (non-pinging) message show up whenever you go live on Twitch streaming Ultimate Skyrim';
+		this.usage = '!optout';
 	}
 
 	public async handle(msg: Message): Promise<void> {
@@ -23,24 +23,23 @@ class OptIn implements Command<undefined> {
 		try {
 			const data = await Storage.read('opt-ins.json');
 
-			if (data.has(msg.member.id)) {
+			if (!data.has(msg.member.id)) {
 				return await this.respond(
 					msg,
 					{
-						message:
-							'you have already opted in to have your streams posted.'
+						message: "you aren't opted in, so can't be opted out."
 					},
 					'reply'
 				);
 			}
-			data.add(msg.member.id);
+			data.delete(msg.member.id);
 
 			await Storage.store('opt-ins.json', Array.from(data));
 			return await this.respond(
 				msg,
 				{
 					message:
-						'you have opted in to have your Ultimate Skyrim streams posted.'
+						'you have opted out of having your Ultimate Skyrim streams posted.'
 				},
 				'reply'
 			);
@@ -51,7 +50,7 @@ class OptIn implements Command<undefined> {
 				msg,
 				{
 					message:
-						'Something went wrong with opting in. Please let Phinocio know'
+						'Something went wrong with opting out. Please let Phinocio know'
 				},
 				'send'
 			);
