@@ -5,5 +5,5 @@ bot.login();
 
 // Temporary logging of unhandled rejections
 process.on('unhandledRejection', (error) => {
-    console.error('Unhandled promise rejection:', error);
+	console.error('Unhandled promise rejection:', error);
 });

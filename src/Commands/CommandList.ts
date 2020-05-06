@@ -7,26 +7,30 @@ import Faction from './Faction';
 import Help from './Help';
 import Kick from './Kick';
 import Memsize from './Memsize';
+import OptIn from './OptIn';
+import OptOut from './OptOut';
 import Pins from './Pins';
 import Unban from './Unban';
 
 class CommandList {
-    private commands: Array<Command<any>> = [
-        new Agree(),
-        new Ask(),
-        new Ban(),
-        new Clear(),
-        new Faction(),
-        new Help(),
-        new Kick(),
-        new Memsize(),
-        new Pins(),
-        new Unban()
-    ];
+	private commands: Array<Command<any>> = [
+		new Agree(),
+		new Ask(),
+		new Ban(),
+		new Clear(),
+		new Faction(),
+		new Help(),
+		new Kick(),
+		new Memsize(),
+		new OptIn(),
+		new OptOut(),
+		new Pins(),
+		new Unban()
+	];
 
-    public getCommands(): Array<Command<any>> {
-        return this.commands;
-    }
+	public getCommands(): Array<Command<any>> {
+		return this.commands;
+	}
 }
 
 export default CommandList;

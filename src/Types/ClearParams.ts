@@ -1,5 +1,5 @@
 type ClearParams = {
-    amount: number | undefined;
+	amount: number | undefined;
 };
 
 export default ClearParams;

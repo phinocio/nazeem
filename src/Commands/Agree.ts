@@ -3,56 +3,56 @@ import { channels, roles } from '../../config.json';
 import Command from '../Interfaces/Command';
 
 class Agree implements Command<undefined> {
-    public identifier: string;
-    public description: string;
-    public usage: string;
+	public identifier: string;
+	public description: string;
+	public usage: string;
 
-    constructor() {
-        this.identifier = 'Agree';
-        this.description =
-            'Agree to server rules and remove Prisoner role, granting access to channels.';
-        this.usage = '!agree';
-    }
+	constructor() {
+		this.identifier = 'Agree';
+		this.description =
+			'Agree to server rules and remove Prisoner role, granting access to channels.';
+		this.usage = '!agree';
+	}
 
-    public async handle(msg: Message): Promise<void> {
-        if (!msg.member) {
-            //TODO: Channel log
-            console.log('Message has no member. Error reee');
-            return;
-        }
+	public async handle(msg: Message): Promise<void> {
+		if (!msg.member) {
+			//TODO: Channel log
+			console.log('Message has no member. Error reee');
+			return;
+		}
 
-        if (
-            msg.channel.id === channels.gatekeep &&
-            msg.member.roles.cache.get(roles.Prisoner)
-        ) {
-            try {
-                await msg.member.roles.remove(roles.Prisoner);
-            } catch (e) {
-                this.respond(msg, { message: e.message }, 'send');
-            }
-        }
+		if (
+			msg.channel.id === channels.gatekeep &&
+			msg.member.roles.cache.get(roles.Prisoner)
+		) {
+			try {
+				await msg.member.roles.remove(roles.Prisoner);
+			} catch (e) {
+				this.respond(msg, { message: e.message }, 'send');
+			}
+		}
 
-        // No response.
-    }
+		// No response.
+	}
 
-    protected async respond(
-        msg: Message,
-        data: object,
-        type: string
-    ): Promise<void> {
-        try {
-            switch (type) {
-                case 'send':
-                    await msg.channel.send(data['message']);
-                    break;
-                case 'reply':
-                    await msg.reply(data['message']);
-                    break;
-            }
-        } catch (e) {
-            console.error(`${this.identifier} response error: ${e.message}`);
-        }
-    }
+	protected async respond(
+		msg: Message,
+		data: object,
+		type: string
+	): Promise<void> {
+		try {
+			switch (type) {
+				case 'send':
+					await msg.channel.send(data['message']);
+					break;
+				case 'reply':
+					await msg.reply(data['message']);
+					break;
+			}
+		} catch (e) {
+			console.error(`${this.identifier} response error: ${e.message}`);
+		}
+	}
 }
 
 export default Agree;

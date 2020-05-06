@@ -3,5 +3,6 @@ module.exports = {
     trailingComma: 'none',
     singleQuote: true,
     tabWidth: 4,
-    tabs: true
+	useTabs: true,
+	formatOnSave: true
 };

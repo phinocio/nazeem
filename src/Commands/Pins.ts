@@ -3,34 +3,34 @@ import {} from '../../config.json';
 import Command from '../Interfaces/Command';
 
 class Pins implements Command<undefined> {
-    public identifier: string;
-    public description: string;
-    public usage: string;
+	public identifier: string;
+	public description: string;
+	public usage: string;
 
-    constructor() {
-        this.identifier = 'Pins';
-        this.description = 'Show users how to check the pins.';
-        this.usage = '!pins';
-    }
+	constructor() {
+		this.identifier = 'Pins';
+		this.description = 'Show users how to check the pins.';
+		this.usage = '!pins';
+	}
 
-    public async handle(msg: Message): Promise<void> {
-        try {
-            // TODO: The link will be stored in the DB once sqlite is set up. No point having it in config.json
-            await msg.channel.send('https://i.imgur.com/LETwjvd.gifv');
-        } catch (e) {
-            this.respond(msg, { message: e.message });
-        }
+	public async handle(msg: Message): Promise<void> {
+		try {
+			// TODO: The link will be stored in the DB once sqlite is set up. No point having it in config.json
+			await msg.channel.send('https://i.imgur.com/LETwjvd.gifv');
+		} catch (e) {
+			this.respond(msg, { message: e.message });
+		}
 
-        // No response.
-    }
+		// No response.
+	}
 
-    protected async respond(msg: Message, data: object): Promise<void> {
-        try {
-            await msg.channel.send(data['message']);
-        } catch (e) {
-            console.error(`${this.identifier} response error: ${e.message}`);
-        }
-    }
+	protected async respond(msg: Message, data: object): Promise<void> {
+		try {
+			await msg.channel.send(data['message']);
+		} catch (e) {
+			console.error(`${this.identifier} response error: ${e.message}`);
+		}
+	}
 }
 
 export default Pins;
