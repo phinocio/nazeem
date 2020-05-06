@@ -3,4 +3,4 @@ dist/
 config.json
 run.sh
 config.json.save
-storage/optins.json
+storage/opt-ins.json
