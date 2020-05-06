@@ -8,7 +8,7 @@ class OptIn implements Command<undefined> {
 	public usage: string;
 
 	constructor() {
-		this.identifier = 'OptIn';
+		this.identifier = 'OptOut';
 		this.description =
 			'Opt in having a (non-pinging) message show up whenever you go live on Twitch streaming Ultimate Skyrim';
 		this.usage = '!optin';
