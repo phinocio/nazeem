@@ -2,13 +2,13 @@ import { Message } from 'discord.js';
 import Command from '../Interfaces/Command';
 import Storage from '../Helpers/Storage';
 
-class OptIn implements Command<undefined> {
+class OptOut implements Command<undefined> {
 	public identifier: string;
 	public description: string;
 	public usage: string;
 
 	constructor() {
-		this.identifier = 'OptIn';
+		this.identifier = 'OptOut';
 		this.description =
 			'Opt out of having a (non-pinging) message show up whenever you go live on Twitch streaming Ultimate Skyrim';
 		this.usage = '!optout';
@@ -77,4 +77,4 @@ class OptIn implements Command<undefined> {
 	}
 }
 
-export default OptIn;
+export default OptOut;
