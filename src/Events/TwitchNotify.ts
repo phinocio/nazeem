@@ -1,18 +1,25 @@
 import { MessageEmbed, Presence, TextChannel } from 'discord.js';
 import { channels } from '../../config.json';
+import Storage from '../Helpers/Storage';
 
 class TwitchNotify {
 	public async handle(presence: Presence): Promise<void> {
+		const optIns = await Storage.read('opt-ins.json');
+
+		if (
+			(presence.member && !optIns.has(presence.member.id)) ||
+			!presence.member
+		) {
+			return;
+		}
+
 		const channel = presence.guild?.channels.cache.find(
 			(ch) => ch.id == channels.twitchNotify
 		) as TextChannel;
 
 		const stream = presence.activities.find((activity) => {
-			console.log(activity.details?.toLowerCase());
 			return activity.details?.toLowerCase().includes('ultimate skyrim');
 		});
-
-		console.log(stream);
 
 		if (presence.user && stream) {
 			console.log('making embed');
