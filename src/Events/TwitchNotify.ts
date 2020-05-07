@@ -18,11 +18,13 @@ class TwitchNotify {
 		) as TextChannel;
 
 		const stream = presence.activities.find((activity) => {
-			return activity.details?.toLowerCase().includes('ultimate skyrim');
+			return (
+				activity.type === 'STREAMING' &&
+				activity.details?.toLowerCase().includes('ultimate skyrim')
+			);
 		});
 
 		if (presence.user && stream) {
-			console.log('making embed');
 			const embed = new MessageEmbed();
 			embed.setTitle(`${stream.details}`);
 			embed.setURL(`${stream.url}`);

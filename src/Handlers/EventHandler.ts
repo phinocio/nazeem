@@ -36,16 +36,19 @@ class EventHandler {
 		});
 
 		this.client.on('presenceUpdate', async (oldPresence, newPresence) => {
-			if (oldPresence?.activities !== newPresence.activities) {
-				newPresence.activities.forEach((activity) => {
-					switch (activity.type) {
-						case 'STREAMING':
-							this.twitchNotify.handle(newPresence);
-							break;
-						default:
-							break;
-					}
-				});
+			// Check if the oldPresence had a streaming activity.
+			const oldStream = oldPresence?.activities.some(
+				(activity) => activity.type === 'STREAMING'
+			);
+
+			// Check if the oldPresence has a streaming activity.
+			const newStream = newPresence?.activities.some(
+				(activity) => activity.type === 'STREAMING'
+			);
+
+			// Only show notification if old presence didn't have a streaming activity and new one does.
+			if (!oldStream && newStream) {
+				this.twitchNotify.handle(newPresence);
 			}
 		});
 	}
