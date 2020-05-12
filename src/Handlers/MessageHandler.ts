@@ -33,7 +33,10 @@ class MessageHandler {
 				new MessageAttachment(newImg)
 			);
 
-			await Storage.delete(newImg.replace('storage/', ''));
+			Promise.all([
+				Storage.delete(newImg.replace('storage/', '')),
+				Storage.delete(bmp.name)
+			]);
 		}
 
 		if (
