@@ -3,7 +3,7 @@ import path from 'path';
 
 abstract class Storage {
 	// Relative to project root.
-	private static path = 'storage';
+	public static path = 'storage';
 
 	public static async read(file: string): Promise<Set<unknown>> {
 		let data = new Set();
@@ -28,6 +28,10 @@ abstract class Storage {
 			path.join(Storage.path, file),
 			JSON.stringify(data)
 		);
+	}
+
+	public static async delete(file: string): Promise<void> {
+		await fs.promises.unlink(path.join(Storage.path, file));
 	}
 }
 

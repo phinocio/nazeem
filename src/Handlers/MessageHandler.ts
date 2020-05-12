@@ -1,7 +1,9 @@
-import { Message } from 'discord.js';
+import { Message, MessageAttachment } from 'discord.js';
 import { message, channels } from '../../config.json';
 import CommandHandler from './CommandHandler';
 import CommandRegistry from '../Commands/CommandRegistry';
+import ConvertBMP from '../Helpers/ConvertBMP';
+import Storage from '../Helpers/Storage';
 
 class MessageHandler {
 	private cmdHandler: CommandHandler;
@@ -18,6 +20,19 @@ class MessageHandler {
 			//TODO: Channel Log
 			console.log('Message has no member');
 			return;
+		}
+		const bmp = msg.attachments.find((attachment) => {
+			return Boolean(attachment.name?.includes('.bmp'));
+		});
+
+		if (bmp && bmp.name) {
+			const newImg = await ConvertBMP.convert(bmp);
+
+			await msg.channel.send(
+				'BMPs are bad mmmmkay',
+				new MessageAttachment(newImg)
+			);
+			await Storage.delete(newImg);
 		}
 
 		if (
@@ -39,7 +54,7 @@ class MessageHandler {
 			}
 		}
 
-		// delete every message that's sent in gatekeep channel except those who have manage messages permission and are an admin or owner..
+		// delete every message that's sent in gatekeep channel or enlist channel except those who have manage messages permission or are an admin or owner..
 		if (
 			(msg.channel.id == channels.gatekeep ||
 				msg.channel.id == channels.enlist) &&
