@@ -35,7 +35,7 @@ class OptIn implements Command<undefined> {
 			}
 			data.add(msg.member.id);
 
-			await Storage.store('opt-ins.json', Array.from(data));
+			await Storage.storeJSON('opt-ins.json', Array.from(data));
 			return await this.respond(
 				msg,
 				{

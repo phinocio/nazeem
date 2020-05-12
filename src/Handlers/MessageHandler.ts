@@ -32,7 +32,8 @@ class MessageHandler {
 				'BMPs are bad mmmmkay',
 				new MessageAttachment(newImg)
 			);
-			await Storage.delete(newImg);
+
+			await Storage.delete(newImg.replace('storage/', ''));
 		}
 
 		if (

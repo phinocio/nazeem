@@ -24,6 +24,11 @@ abstract class Storage {
 	}
 
 	public static async store(file: string, data: object): Promise<void> {
+		await fs.promises.writeFile(path.join(Storage.path, file), data);
+	}
+
+	public static async storeJSON(file: string, data: object): Promise<void> {
+		console.log(typeof data);
 		await fs.promises.writeFile(
 			path.join(Storage.path, file),
 			JSON.stringify(data)
