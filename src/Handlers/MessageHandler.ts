@@ -28,10 +28,12 @@ class MessageHandler {
 		if (bmp && bmp.name) {
 			const newImg = await ConvertBMP.convert(bmp);
 
-			await msg.channel.send(
+			await msg.reply(
 				'BMPs are bad mmmmkay',
 				new MessageAttachment(newImg)
 			);
+
+			await msg.delete();
 
 			Promise.all([
 				Storage.delete(newImg.replace('storage/', '')),
