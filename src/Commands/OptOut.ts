@@ -34,7 +34,7 @@ class OptOut implements Command<undefined> {
 			}
 			data.delete(msg.member.id);
 
-			await Storage.store('opt-ins.json', Array.from(data));
+			await Storage.storeJSON('opt-ins.json', Array.from(data));
 			return await this.respond(
 				msg,
 				{
