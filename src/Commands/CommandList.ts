@@ -7,6 +7,7 @@ import Faction from './Faction';
 import Help from './Help';
 import Kick from './Kick';
 import Memsize from './Memsize';
+import NotifyMe from './NotifyMe';
 import OptIn from './OptIn';
 import OptOut from './OptOut';
 import Pins from './Pins';
@@ -22,6 +23,7 @@ class CommandList {
 		new Help(),
 		new Kick(),
 		new Memsize(),
+		new NotifyMe(),
 		new OptIn(),
 		new OptOut(),
 		new Pins(),
