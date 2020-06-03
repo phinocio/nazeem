@@ -20,7 +20,6 @@ class Faction implements Command<FactionParams> {
 
 	public async handle(msg: Message, param: FactionParams): Promise<void> {
 		const { role } = param;
-		console.log(role);
 		this.numMsg = 1;
 
 		// Used to bulk delete messages after the command to keep the channel clean.
