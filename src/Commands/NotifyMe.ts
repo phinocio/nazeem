@@ -30,19 +30,35 @@ class NotifyMe implements Command<NotifyMeParams> {
 						msg,
 						{
 							message:
-								'You have been opted out of pinging notifications!'
+								'you have been opted out of pinging notifications!'
 						},
 						'reply'
 					);
 				}
+				return await this.respond(
+					msg,
+					{
+						message: 'you are not opted in so can not opt out!'
+					},
+					'reply'
+				);
 			} else {
 				// add role.
+				if (msg.member && msg.member.roles.cache.get(roles.NotifyMe)) {
+					return await this.respond(
+						msg,
+						{
+							message: 'you are already opted in!'
+						},
+						'reply'
+					);
+				}
 				await msg.member?.roles.add(roles.NotifyMe);
 				return await this.respond(
 					msg,
 					{
 						message:
-							'You have been opted in to pinging notifications!'
+							'you have been opted in to pinging notifications!'
 					},
 					'reply'
 				);
