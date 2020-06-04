@@ -1,6 +1,6 @@
 import { Message } from 'discord.js';
 import Command from '../Interfaces/Command';
-import { roles } from '../../config.json';
+import { roles, channels } from '../../config.json';
 import NotifyMeParams from '../Types/NotifyMeParams';
 import NotifyMeParamsParser from '../Parsers/NotifyMeParamsParser';
 
@@ -20,6 +20,12 @@ class NotifyMe implements Command<NotifyMeParams> {
 
 	public async handle(msg: Message, params: NotifyMeParams): Promise<void> {
 		const { stop } = params;
+
+		if (msg.channel.id !== channels.botCommands) {
+			// do nothing and delete msg
+			await msg.delete();
+			return;
+		}
 
 		try {
 			if (stop) {
