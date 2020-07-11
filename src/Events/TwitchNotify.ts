@@ -28,6 +28,8 @@ class TwitchNotify {
 			);
 		});
 
+		console.log(stream);
+
 		if (presence.user && stream) {
 			const embed = new MessageEmbed();
 			embed.setTitle(`${stream.details}`);
