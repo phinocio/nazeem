@@ -39,10 +39,11 @@ class TwitchNotify {
 		});
 
 		if (presence.user && stream) {
+			const game = stream.state != '' ? stream.state : 'no game set';
 			const embed = new MessageEmbed();
 			embed.setTitle(`${stream.details}`);
 			embed.setURL(`${stream.url}`);
-			embed.addField('Game', stream.state ?? 'no game set');
+			embed.addField('Game', game);
 			embed.setImage(`${stream.assets?.largeImageURL()}`);
 			embed.setColor('#DB243A');
 
