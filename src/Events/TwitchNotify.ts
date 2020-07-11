@@ -4,7 +4,6 @@ import Storage from '../Helpers/Storage';
 
 class TwitchNotify {
 	public async handle(presence: Presence): Promise<void> {
-		console.log('twitch notify handle!');
 		const optIns = await Storage.read('opt-ins.json');
 
 		if (
@@ -19,16 +18,16 @@ class TwitchNotify {
 		) as TextChannel;
 
 		const stream = presence.activities.find((activity) => {
-			console.log('type: ', activity.type);
-			console.log('details: ', activity.details);
-			console.log(
-				'contains UltSky: ',
-				activity.details?.toLowerCase().includes('ultsky')
-			);
-			console.log(
-				'contains ultimate skyrim: ',
-				activity.details?.toLowerCase().includes('ultimate skyrim')
-			);
+			// console.log('type: ', activity.type);
+			// console.log('details: ', activity.details);
+			// console.log(
+			// 	'contains UltSky: ',
+			// 	activity.details?.toLowerCase().includes('ultsky')
+			// );
+			// console.log(
+			// 	'contains ultimate skyrim: ',
+			// 	activity.details?.toLowerCase().includes('ultimate skyrim')
+			// );
 			return (
 				(activity.type === 'STREAMING' &&
 					activity.details
@@ -39,13 +38,11 @@ class TwitchNotify {
 			);
 		});
 
-		console.log(stream);
-
 		if (presence.user && stream) {
 			const embed = new MessageEmbed();
 			embed.setTitle(`${stream.details}`);
 			embed.setURL(`${stream.url}`);
-			embed.addField('Game', stream.state);
+			embed.addField('Game', stream.state ?? 'no game set');
 			embed.setImage(`${stream.assets?.largeImageURL()}`);
 			embed.setColor('#DB243A');
 
