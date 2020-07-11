@@ -4,6 +4,7 @@ import Storage from '../Helpers/Storage';
 
 class TwitchNotify {
 	public async handle(presence: Presence): Promise<void> {
+		console.log('twitch notify handle!');
 		const optIns = await Storage.read('opt-ins.json');
 
 		if (
