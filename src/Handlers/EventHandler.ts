@@ -37,6 +37,7 @@ class EventHandler {
 
 		this.client.on('presenceUpdate', async (oldPresence, newPresence) => {
 			// Check if the oldPresence had a streaming activity.
+			console.log('presence update!');
 			const oldStream = oldPresence?.activities.some(
 				(activity) => activity.type === 'STREAMING'
 			);

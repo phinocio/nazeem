@@ -19,8 +19,11 @@ class TwitchNotify {
 
 		const stream = presence.activities.find((activity) => {
 			return (
-				activity.type === 'STREAMING' &&
-				(activity.details?.toLowerCase().includes('ultimate skyrim') ||
+				(activity.type === 'STREAMING' &&
+					activity.details
+						?.toLowerCase()
+						.includes('ultimate skyrim')) ||
+				(activity.type === 'STREAMING' &&
 					activity.details?.toLowerCase().includes('ultsky'))
 			);
 		});
