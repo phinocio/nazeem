@@ -18,6 +18,16 @@ class TwitchNotify {
 		) as TextChannel;
 
 		const stream = presence.activities.find((activity) => {
+			console.log('type: ', activity.type);
+			console.log('details: ', activity.details);
+			console.log(
+				'contains UltSky: ',
+				activity.details?.toLowerCase().includes('ultsky')
+			);
+			console.log(
+				'contains ultimate skyrim: ',
+				activity.details?.toLowerCase().includes('ultimate skyrim')
+			);
 			return (
 				(activity.type === 'STREAMING' &&
 					activity.details
