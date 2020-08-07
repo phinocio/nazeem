@@ -13,6 +13,7 @@ import NotifyMe from './NotifyMe';
 import OptIn from './OptIn';
 import OptOut from './OptOut';
 import Pins from './Pins';
+import StabilityTest from './StabilityTest';
 import Unban from './Unban';
 
 class CommandList {
@@ -31,6 +32,7 @@ class CommandList {
 		new OptIn(),
 		new OptOut(),
 		new Pins(),
+		new StabilityTest(),
 		new Unban()
 	];
 

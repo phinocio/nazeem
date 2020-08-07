@@ -7,7 +7,7 @@ class ICow implements Command<undefined> {
 	public usage: string;
 
 	constructor() {
-		this.identifier = 'icow';
+		this.identifier = 'ICOW';
 		this.description = 'Show that icow is not currently available.';
 		this.usage = '!icow';
 	}
@@ -21,10 +21,7 @@ class ICow implements Command<undefined> {
 		await this.respond(
 			msg,
 			{
-				message: `On behalf of the Ultimate Skyrim Team, we're sorry for the inconvenience, as of right now, 
-  **Immersive College of Winterhold** which is a **mandatory** mod for the installation of Ultimate Skyrim is currently set to *hidden* as the mod author is updating/reviewing the mod permissions against the assets they use. By their comments, it sounds as if it will be back up in the next few days. We appreciate your patience, and I will gladly add your name to the list of people and will tag you when we get an update.
-**Please Leave an Emoji on this message if you'd like to be added to our list**
-*if your Emoji no longer there, it means you have been added and you will hear from us soon<3*`
+				message: `The official auto-install is currently under maintenance. If you'd like to install now using Wabbajack, please see https://discordapp.com/channels/344256550640287755/348579495537803274/741208052027621408 to use Wabbajack's unofficial auto-installation of Ultimate Skyrim`
 			},
 			'send'
 		);
