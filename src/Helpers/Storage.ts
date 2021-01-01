@@ -23,11 +23,17 @@ abstract class Storage {
 		}
 	}
 
-	public static async store(file: string, data: object): Promise<void> {
+	public static async store(
+		file: string,
+		data: string | Uint8Array
+	): Promise<void> {
 		await fs.promises.writeFile(path.join(Storage.path, file), data);
 	}
 
-	public static async storeJSON(file: string, data: object): Promise<void> {
+	public static async storeJSON(
+		file: string,
+		data: string | Uint8Array
+	): Promise<void> {
 		await fs.promises.writeFile(
 			path.join(Storage.path, file),
 			JSON.stringify(data)

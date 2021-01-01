@@ -32,7 +32,7 @@ https://docs.google.com/document/d/1PusjuS09qs8QPU5PVf7uSoZKt_35ZTvFmFrLWtIaTQ0/
 
 	protected async respond(
 		msg: Message,
-		data: object,
+		data: Record<string, string>,
 		type: string
 	): Promise<void> {
 		try {

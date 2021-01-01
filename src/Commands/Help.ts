@@ -69,7 +69,7 @@ class Help implements Command<HelpParams> {
 
 	protected async respond(
 		msg: Message,
-		data: object,
+		data: Record<string, MessageEmbed>,
 		type: string
 	): Promise<void> {
 		try {

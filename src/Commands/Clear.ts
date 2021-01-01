@@ -46,7 +46,9 @@ class Clear implements Command<ClearParams> {
 		if (amount && amount > 0 && amount <= 100) {
 			try {
 				await msg.delete();
-				await msg.channel.bulkDelete(amount);
+				if (msg.channel.type != 'dm') {
+					await msg.channel.bulkDelete(amount);
+				}
 			} catch (e) {
 				await this.respond(msg, { message: e.message }, 'send');
 			}
@@ -66,7 +68,7 @@ class Clear implements Command<ClearParams> {
 
 	protected async respond(
 		msg: Message,
-		data: object,
+		data: Record<string, string>,
 		type: string
 	): Promise<void> {
 		try {

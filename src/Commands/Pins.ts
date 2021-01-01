@@ -24,7 +24,10 @@ class Pins implements Command<undefined> {
 		// No response.
 	}
 
-	protected async respond(msg: Message, data: object): Promise<void> {
+	protected async respond(
+		msg: Message,
+		data: Record<string, string>
+	): Promise<void> {
 		try {
 			await msg.channel.send(data['message']);
 		} catch (e) {

@@ -39,7 +39,7 @@ class Memsize implements Command<MemsizeParams> {
 
 	protected async respond(
 		msg: Message,
-		data: object,
+		data: Record<string, string>,
 		type: string
 	): Promise<void> {
 		try {

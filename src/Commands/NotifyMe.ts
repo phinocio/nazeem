@@ -76,7 +76,7 @@ class NotifyMe implements Command<NotifyMeParams> {
 
 	protected async respond(
 		msg: Message,
-		data: object,
+		data: Record<string, string>,
 		type: string
 	): Promise<void> {
 		try {

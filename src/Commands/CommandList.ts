@@ -6,12 +6,9 @@ import Clear from './Clear';
 import Faction from './Faction';
 import FAQ from './FAQ';
 import Help from './Help';
-import ICow from './iCow';
 import Kick from './Kick';
 import Memsize from './Memsize';
 import NotifyMe from './NotifyMe';
-import OptIn from './OptIn';
-import OptOut from './OptOut';
 import Pins from './Pins';
 import StabilityTest from './StabilityTest';
 import Unban from './Unban';
@@ -25,12 +22,9 @@ class CommandList {
 		new Faction(),
 		new FAQ(),
 		new Help(),
-		new ICow(),
 		new Kick(),
 		new Memsize(),
 		new NotifyMe(),
-		new OptIn(),
-		new OptOut(),
 		new Pins(),
 		new StabilityTest(),
 		new Unban()

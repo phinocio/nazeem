@@ -75,7 +75,7 @@ class Kick implements Command<KickParams> {
 
 	protected async respond(
 		msg: Message,
-		data: object,
+		data: Record<string, string>,
 		type: string
 	): Promise<void> {
 		try {

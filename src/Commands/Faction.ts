@@ -1,5 +1,5 @@
 import { Message, Role } from 'discord.js';
-import { channels, factions } from '../../config.json';
+import { factions } from '../../config.json';
 import Command from '../Interfaces/Command';
 import FactionParams from '../Types/FactionParams';
 import FactionParamsParser from '../Parsers/FactionParamsParser';
@@ -24,10 +24,11 @@ class Faction implements Command<FactionParams> {
 
 		// Used to bulk delete messages after the command to keep the channel clean.
 
-		if (msg.channel.id !== channels.enlist) {
-			// do nothing
-			return;
-		}
+		// Remove restriction to only elist channel.
+		// if (msg.channel.id !== channels.enlist) {
+		// 	// do nothing
+		// 	return;
+		// }
 
 		if (!msg.member) {
 			return;
@@ -82,13 +83,15 @@ class Faction implements Command<FactionParams> {
 		}
 
 		setTimeout(() => {
-			msg.channel.bulkDelete(this.numMsg);
+			if (msg.channel.type != 'dm') {
+				msg.channel.bulkDelete(this.numMsg);
+			}
 		}, 2000);
 	}
 
 	protected async respond(
 		msg: Message,
-		data: object,
+		data: Record<string, string>,
 		type: string
 	): Promise<void> {
 		try {
