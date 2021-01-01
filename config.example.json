@@ -11,12 +11,13 @@
     },
     "channels": {
         "gatekeep": "399223244227346433",
-		"enlist": "433306572790431755",
-		"twitchNotify": "394002523851063312"
+        "enlist": "433306572790431755",
+		"botCommands": "408873468826877973",
+		"redditFeed": "change-me"
     },
     "roles": {
         "Prisoner": "399211910857228310",
-		"NotifyMe": "717883878987137074"
+		"NotifyMe": "717881596774055963"
     },
     "factions": {
         "Bards College": "433306095847735296",
