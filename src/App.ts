@@ -1,4 +1,5 @@
 import Bot from './Bot';
+import RedditFeed from './Cron/RedditFeed';
 
 const bot = new Bot();
 bot.login();
@@ -7,3 +8,6 @@ bot.login();
 process.on('unhandledRejection', (error) => {
 	console.error('Unhandled promise rejection:', error);
 });
+
+// Start Cron tasks.
+RedditFeed.start();
