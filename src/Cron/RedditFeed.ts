@@ -13,8 +13,6 @@ class RedditFeed {
 	private async getNewPosts(): Promise<void> {
 		const url = `https://www.reddit.com/r/${redditFeed.subreddit}/new.json`;
 
-		console.log('getting new posts time:', Date.now());
-
 		const response = await fetch(url);
 		const newPosts = await response.json();
 
