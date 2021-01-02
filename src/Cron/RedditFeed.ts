@@ -112,8 +112,6 @@ class RedditFeed {
 			} catch (e) {
 				console.log(e.message);
 			}
-		} else {
-			console.log('already sent post!');
 		}
 	}
 
