@@ -20,6 +20,7 @@
         "run-prod": "ts-node 'src/App.ts'"
     },
     "devDependencies": {
+        "@types/crypto-js": "^4.0.1",
         "@types/node": "^14.14.19",
         "@types/node-cron": "^2.0.3",
         "@types/ws": "^7.4.0",
@@ -34,6 +35,7 @@
     },
     "dependencies": {
         "@types/node-fetch": "^2.5.7",
+        "crypto-js": "^4.0.0",
         "discord.js": "^12.5.1",
         "node-cron": "^2.0.3",
         "node-fetch": "^2.6.1",

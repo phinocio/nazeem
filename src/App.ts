@@ -10,4 +10,4 @@ process.on('unhandledRejection', (error) => {
 });
 
 // Start Cron tasks.
-RedditFeed.start();
+RedditFeed.run();

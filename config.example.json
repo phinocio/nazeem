@@ -14,7 +14,12 @@
         "enlist": "433306572790431755",
 		"botCommands": "408873468826877973",
 		"redditFeed": "change-me"
-    },
+	},
+	"redditFeed": {
+		"channel": "change-me",
+		"subreddit": "ultimateskyrim",
+		"frequency": "* * * * *"
+	},
     "roles": {
         "Prisoner": "399211910857228310",
 		"NotifyMe": "717881596774055963"

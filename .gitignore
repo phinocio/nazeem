@@ -3,3 +3,4 @@ dist/
 config.json
 run.sh
 config.json.save
+nohup.out
