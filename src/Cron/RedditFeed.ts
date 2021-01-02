@@ -31,7 +31,6 @@ class RedditFeed {
 
 			if (newPosts.data.children[0].data.is_self) {
 				data = {
-					content: 'test!',
 					embeds: [
 						{
 							author: {
