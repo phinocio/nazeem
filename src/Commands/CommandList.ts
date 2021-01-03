@@ -5,6 +5,7 @@ import Ban from './Ban';
 import Clear from './Clear';
 import Faction from './Faction';
 import FAQ from './FAQ';
+import GameFolderFiles from './GameFolderFiles';
 import Help from './Help';
 import Kick from './Kick';
 import Memsize from './Memsize';
@@ -21,6 +22,7 @@ class CommandList {
 		new Clear(),
 		new Faction(),
 		new FAQ(),
+		new GameFolderFiles(),
 		new Help(),
 		new Kick(),
 		new Memsize(),
