@@ -66,7 +66,6 @@ class RedditFeed {
 				};
 			} else {
 				data = {
-					content: 'test!',
 					embeds: [
 						{
 							author: {
