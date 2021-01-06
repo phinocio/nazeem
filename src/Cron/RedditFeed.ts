@@ -2,6 +2,7 @@ import cron from 'node-cron';
 import fetch from 'node-fetch';
 import md5 from 'crypto-js/md5';
 import { redditFeed } from '../../config.json';
+import Storage from '../Helpers/Storage';
 
 class RedditFeed {
 	private task: cron.ScheduledTask;
@@ -16,14 +17,18 @@ class RedditFeed {
 		const response = await fetch(url);
 		const newPosts = await response.json();
 
+		this.newestPost = await Storage.readTxt('redditfeed.txt');
+
 		const postHash = md5(
 			newPosts.data.children[0].data.title +
 				newPosts.data.children[0].data.author +
 				newPosts.data.children[0].data.created_utc
 		).toString();
 
+		console.log(this.newestPost);
 		if (this.newestPost != postHash) {
-			this.newestPost = postHash;
+			// It's a new post, so overwrite the hash in the file.
+			await Storage.store('redditfeed.txt', postHash);
 			console.log('Sending new post...');
 			let data;
 
@@ -107,7 +112,7 @@ class RedditFeed {
 				});
 				console.log('sent!');
 			} catch (e) {
-				console.log(e.message);
+				console.log('reddit feed error: ' + e.message);
 			}
 		}
 	}
