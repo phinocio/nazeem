@@ -23,6 +23,21 @@ abstract class Storage {
 		}
 	}
 
+	public static async readTxt(file: string): Promise<string> {
+		let data = '';
+		try {
+			data = await fs.promises.readFile(
+				path.join(Storage.path, file),
+				'utf8'
+			);
+		} catch (e) {
+			// File doesn't exist.
+			console.log(e.message);
+		} finally {
+			return data;
+		}
+	}
+
 	public static async store(
 		file: string,
 		data: string | Uint8Array

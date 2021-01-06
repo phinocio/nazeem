@@ -2,6 +2,7 @@
 <!-- TOC -->
 
 - [Nazeem Changelog](#nazeem-changelog)
+	- [v0.11.0 - 2021-01-06](#v0110---2021-01-06)
 	- [v0.10.1 - 2021-01-04](#v0101---2021-01-04)
 	- [v0.10.0 - 2021-01-02](#v0100---2021-01-02)
 	- [v0.9.1 - 2021-01-01](#v091---2021-01-01)
@@ -9,6 +10,12 @@
 
 <!-- /TOC -->
 ___
+
+## v0.11.0 - 2021-01-06
+
+- Changed the reddit feed to store the most recent post in a file to prevent sending again on bot restart
+- Added a specific `readTxt` method to the Storage helper.
+- Moved `!msg.author.bot` to the EventHandler check so MessageHandler does not run on bot messages including Webhooks.
 
 ## v0.10.1 - 2021-01-04
 

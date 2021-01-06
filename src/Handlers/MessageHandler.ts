@@ -18,7 +18,7 @@ class MessageHandler {
 		//TEMP FIX, shouldn't happen anyway.
 		if (!msg.member) {
 			//TODO: Channel Log
-			console.log('Message has no member');
+			console.log('meow Message has no member');
 			return;
 		}
 		const bmp = msg.attachments.find((attachment) => {
