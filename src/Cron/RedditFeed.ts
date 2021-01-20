@@ -25,7 +25,6 @@ class RedditFeed {
 				newPosts.data.children[0].data.created_utc
 		).toString();
 
-		console.log(this.newestPost);
 		if (this.newestPost != postHash) {
 			// It's a new post, so overwrite the hash in the file.
 			await Storage.store('redditfeed.txt', postHash);
