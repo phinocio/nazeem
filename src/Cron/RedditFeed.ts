@@ -47,8 +47,7 @@ class RedditFeed {
 									200
 								) + '...',
 							thumbnail: {
-								url:
-									'https://cdn.discordapp.com/attachments/793579025762353192/794714986043408424/iu.png'
+								url: 'https://i.imgur.com/sdO8tAw.png'
 							},
 							fields: [
 								{
