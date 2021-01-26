@@ -11,6 +11,7 @@ import Kick from './Kick';
 import Memsize from './Memsize';
 import NotifyMe from './NotifyMe';
 import Pins from './Pins';
+import SlowMode from './SlowMode';
 import StabilityTest from './StabilityTest';
 import Unban from './Unban';
 
@@ -28,6 +29,7 @@ class CommandList {
 		new Memsize(),
 		new NotifyMe(),
 		new Pins(),
+		new SlowMode(),
 		new StabilityTest(),
 		new Unban()
 	];
