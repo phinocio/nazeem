@@ -2,6 +2,7 @@
 <!-- TOC -->
 
 - [Nazeem Changelog](#nazeem-changelog)
+	- [v0.12.0 - 2021-01-25](#v0120---2021-01-25)
 	- [v0.11.2 - 2021-01-23](#v0112---2021-01-23)
 	- [v0.11.1 - 2021-01-20](#v0111---2021-01-20)
 	- [v0.11.0 - 2021-01-06](#v0110---2021-01-06)
@@ -13,9 +14,13 @@
 <!-- /TOC -->
 ___
 
+## v0.12.0 - 2021-01-25
+
+- Implement a !slowmode command to set a channel to slowmode.
+
 ## v0.11.2 - 2021-01-23
 
-- Fix thumbnail image.
+- Fix thumbnail image for redditfeed command.
 
 ## v0.11.1 - 2021-01-20
 
