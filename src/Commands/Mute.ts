@@ -52,6 +52,27 @@ class Mute implements Command<MuteParams> {
 				);
 			}
 
+			let targetIsMod;
+
+			for (const role of modRoles) {
+				if (!targetIsMod) {
+					targetIsMod = member.roles.cache.has(role);
+				}
+			}
+
+			if (
+				targetIsMod ||
+				member.hasPermission('ADMINISTRATOR') ||
+				member.hasPermission('MANAGE_ROLES')
+			) {
+				return await this.respond(
+					msg,
+					{
+						message: `**${member.user.username}** cannot be muted!`
+					},
+					'send'
+				);
+			}
 			if (member.roles.cache.has(roles.Mute)) {
 				return await this.respond(
 					msg,
