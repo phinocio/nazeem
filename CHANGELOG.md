@@ -2,6 +2,7 @@
 <!-- TOC -->
 
 - [Nazeem Changelog](#nazeem-changelog)
+	- [v0.13.0 - 2021-01-31](#v0130---2021-01-31)
 	- [v0.12.0 - 2021-01-25](#v0120---2021-01-25)
 	- [v0.11.2 - 2021-01-23](#v0112---2021-01-23)
 	- [v0.11.1 - 2021-01-20](#v0111---2021-01-20)
@@ -13,6 +14,12 @@
 
 <!-- /TOC -->
 ___
+
+## v0.13.0 - 2021-01-31
+
+- Created `!mute <user> <reason?>` command to mute a user.
+- Created `!unmute <user> <reason?>` command to unmute a user.
+- Update TODO.
 
 ## v0.12.0 - 2021-01-25
 
