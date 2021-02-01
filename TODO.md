@@ -17,6 +17,10 @@
 
 ### Misc
 
--   [ ] !pins command
+-   [x] !pins command
 
 -   [ ] Log deleted msgs to a specific channel.
+
+## Permissions Handler
+
+- [ ] Implement a PermissionsHandler to deal with command permissions outside of the commands themselves. Likely using an attribute similar to `identifier` for the command to define what permissions it needs.

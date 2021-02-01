@@ -9,11 +9,13 @@ import GameFolderFiles from './GameFolderFiles';
 import Help from './Help';
 import Kick from './Kick';
 import Memsize from './Memsize';
+import Mute from './Mute';
 import NotifyMe from './NotifyMe';
 import Pins from './Pins';
 import SlowMode from './SlowMode';
 import StabilityTest from './StabilityTest';
 import Unban from './Unban';
+import Unmute from './Unmute';
 
 class CommandList {
 	private commands: Array<Command<any>> = [
@@ -27,11 +29,13 @@ class CommandList {
 		new Help(),
 		new Kick(),
 		new Memsize(),
+		new Mute(),
 		new NotifyMe(),
 		new Pins(),
 		new SlowMode(),
 		new StabilityTest(),
-		new Unban()
+		new Unban(),
+		new Unmute()
 	];
 
 	public getCommands(): Array<Command<any>> {
