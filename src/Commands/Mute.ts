@@ -9,6 +9,7 @@ class Mute implements Command<MuteParams> {
 	public parser: (src: Message, identifier: string) => Promise<MuteParams>;
 	public description: string;
 	public usage: string;
+	public isUserCommand = false;
 
 	constructor() {
 		this.identifier = 'Mute';

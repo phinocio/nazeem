@@ -9,6 +9,7 @@ interface Command<T> {
 	handle(msg: Message, params?: T): Promise<void>;
 	readonly description: string;
 	readonly usage: string;
+	readonly isUserCommand: boolean;
 }
 
 export default Command;

@@ -8,6 +8,7 @@ class Clear implements Command<ClearParams> {
 	public parser: (src: Message, identifier: string) => ClearParams;
 	public description: string;
 	public usage: string;
+	public isUserCommand = false;
 
 	constructor() {
 		this.identifier = 'Clear';

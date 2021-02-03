@@ -8,6 +8,7 @@ class Ban implements Command<BanParams> {
 	public parser: (src: Message, identifier: string) => Promise<BanParams>;
 	public description: string;
 	public usage: string;
+	public isUserCommand = false;
 
 	constructor() {
 		this.identifier = 'Ban';

@@ -8,6 +8,7 @@ class Unban implements Command<UnbanParams> {
 	public parser: (src: Message, identifier: string) => Promise<UnbanParams>;
 	public description: string;
 	public usage: string;
+	public isUserCommand = false;
 
 	constructor() {
 		this.identifier = 'Unban';

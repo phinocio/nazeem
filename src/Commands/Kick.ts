@@ -8,6 +8,7 @@ class Kick implements Command<KickParams> {
 	public parser: (src: Message, identifier: string) => Promise<KickParams>;
 	public description: string;
 	public usage: string;
+	public isUserCommand = false;
 
 	constructor() {
 		this.identifier = 'Kick';
