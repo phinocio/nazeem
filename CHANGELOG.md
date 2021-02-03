@@ -2,6 +2,7 @@
 <!-- TOC -->
 
 - [Nazeem Changelog](#nazeem-changelog)
+	- [v0.14.1 - 2021-02-03](#v0141---2021-02-03)
 	- [v0.14.0 - 2021-02-03](#v0140---2021-02-03)
 	- [v0.13.0 - 2021-01-31](#v0130---2021-01-31)
 	- [v0.12.0 - 2021-01-25](#v0120---2021-01-25)
@@ -15,6 +16,10 @@
 
 <!-- /TOC -->
 ___
+
+## v0.14.1 - 2021-02-03
+
+- Change general help command to only show admin/mod commands if an admin/mod uses the command.
 
 ## v0.14.0 - 2021-02-03
 
