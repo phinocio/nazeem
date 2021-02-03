@@ -20,6 +20,7 @@ ___
 
 - Add bool attribute 'isUserCommand' to each command to be able to split up the help menu depending on who calls it.
 - Implement check on help command to determine who called it (mod+ or user) and respond with appropriate commands (all for mod+).
+- Changed specific help command (!help ban) to not give info to users that don't have access to those commands.
 
 ## v0.13.0 - 2021-01-31
 
