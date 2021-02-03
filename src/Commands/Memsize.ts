@@ -8,6 +8,7 @@ class Memsize implements Command<MemsizeParams> {
 	public parser: (src: Message, identifier: string) => MemsizeParams;
 	public description: string;
 	public usage: string;
+	public isUserCommand = true;
 
 	constructor() {
 		this.identifier = 'Memsize';

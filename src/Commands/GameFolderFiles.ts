@@ -6,6 +6,7 @@ class GameFolderFiles implements Command<undefined> {
 	public identifier: string;
 	public description: string;
 	public usage: string;
+	public isUserCommand = true;
 
 	constructor() {
 		this.identifier = 'GFF';

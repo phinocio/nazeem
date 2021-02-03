@@ -8,6 +8,7 @@ class SlowMode implements Command<SlowModeParams> {
 	public parser: (src: Message, identifier: string) => SlowModeParams;
 	public description: string;
 	public usage: string;
+	public isUserCommand = false;
 
 	constructor() {
 		this.identifier = 'Slowmode';

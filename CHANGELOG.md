@@ -2,6 +2,7 @@
 <!-- TOC -->
 
 - [Nazeem Changelog](#nazeem-changelog)
+	- [v0.14.0 - 2021-02-03](#v0140---2021-02-03)
 	- [v0.13.0 - 2021-01-31](#v0130---2021-01-31)
 	- [v0.12.0 - 2021-01-25](#v0120---2021-01-25)
 	- [v0.11.2 - 2021-01-23](#v0112---2021-01-23)
@@ -14,6 +15,11 @@
 
 <!-- /TOC -->
 ___
+
+## v0.14.0 - 2021-02-03
+
+- Add bool attribute 'isUserCommand' to each command to be able to split up the help menu depending on who calls it.
+- Implement check on help command to determine who called it (mod+ or user) and respond with appropriate commands (all for mod+).
 
 ## v0.13.0 - 2021-01-31
 

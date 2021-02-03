@@ -9,6 +9,7 @@ class NotifyMe implements Command<NotifyMeParams> {
 	public parser: (src: Message, identifier: string) => NotifyMeParams;
 	public description: string;
 	public usage: string;
+	public isUserCommand = true;
 
 	constructor() {
 		this.identifier = 'NotifyMe';

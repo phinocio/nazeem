@@ -10,6 +10,7 @@ class Help implements Command<HelpParams> {
 	public parser: (src: Message, identifier: string) => HelpParams | undefined;
 	public description: string;
 	public usage: string;
+	public isUserCommand = true;
 
 	constructor() {
 		this.identifier = 'Help';

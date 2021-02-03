@@ -10,6 +10,7 @@ class Faction implements Command<FactionParams> {
 	public description: string;
 	public usage: string;
 	private numMsg: number;
+	public isUserCommand = true;
 
 	constructor() {
 		this.identifier = 'Faction';
