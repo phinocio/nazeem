@@ -73,12 +73,12 @@ class RedditFeed {
 						{
 							author: {
 								name: `New media post from ${newPosts.data.children[0].data.author}`,
-								url: newPosts.data.children[0].data.url
+								url: `https://reddit.com${newPosts.data.children[0].data.permalink}`
 							},
 							title: newPosts.data.children[0].data.title,
 							url: newPosts.data.children[0].data.url,
 							thumbnail: {
-								url: newPosts.data.children[0].data.thumbnail
+								url: 'https://i.imgur.com/sdO8tAw.png'
 							},
 							fields: [
 								{
