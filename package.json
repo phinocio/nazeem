@@ -1,6 +1,6 @@
 {
     "name": "nazeem",
-    "version": "0.15.0",
+    "version": "0.16.0",
     "description": "Custom Discord bot for Dylan Perry's Ultimate Skyrim server",
     "main": "dist/index.js",
     "repository": {
