@@ -61,19 +61,19 @@ class MessageHandler {
 		}
 
 		// delete every message that's sent in gatekeep channel or enlist channel except those who have manage messages permission or are an admin or owner..
-		if (
-			(msg.channel.id == channels.gatekeep ||
-				msg.channel.id == channels.enlist) &&
-			!msg.member.hasPermission('MANAGE_MESSAGES')
-		) {
-			try {
-				setTimeout(async () => {
-					await msg.delete();
-				}, 1000);
-			} catch (e) {
-				console.log('Message already deleted');
-			}
-		}
+		// if (
+		// 	(msg.channel.id == channels.gatekeep ||
+		// 		msg.channel.id == channels.enlist) &&
+		// 	!msg.member.hasPermission('MANAGE_MESSAGES')
+		// ) {
+		// 	try {
+		// 		setTimeout(async () => {
+		// 			await msg.delete();
+		// 		}, 1000);
+		// 	} catch (e) {
+		// 		console.log('Message already deleted');
+		// 	}
+		// }
 	}
 }
 
