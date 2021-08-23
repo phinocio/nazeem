@@ -1,5 +1,5 @@
 import Command from '../Interfaces/Command';
-// import Agree from './Agree';
+import Agree from './Agree';
 // import Ask from './Ask';
 // import Ban from './Ban';
 // import Clear from './Clear';
@@ -20,7 +20,7 @@ import UpdatePatreonApi from './UpdatePatreonApi';
 
 class CommandList {
 	private commands: Array<Command<any>> = [
-		// new Agree(),
+		new Agree(),
 		// new Ask(),
 		// new Ban(),
 		// new Clear(),
