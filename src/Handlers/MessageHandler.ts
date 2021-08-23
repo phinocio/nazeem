@@ -1,5 +1,5 @@
 import { Message, MessageAttachment } from 'discord.js';
-import { message, channels } from '../../config.json';
+import { message } from '../../config.json';
 import CommandHandler from './CommandHandler';
 import CommandRegistry from '../Commands/CommandRegistry';
 import ConvertBMP from '../Helpers/ConvertBMP';
