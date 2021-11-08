@@ -6,6 +6,10 @@
 <!-- /TOC -->
 ___
 
+## v0.16.1 - 2021-11-08
+
+- Updated NPM packages
+
 ## v0.16.0 - 2021-08-22
 
 - Updated npm packages
