@@ -108,7 +108,6 @@ class RedditFeed {
 					},
 					body: JSON.stringify(data)
 				});
-				console.log('sent!');
 			} catch (e: any) {
 				console.log('reddit feed error: ' + e.message);
 			}

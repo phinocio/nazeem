@@ -1,6 +1,9 @@
 import Discord, { ClientUser } from 'discord.js';
 import { auth } from '../config.json';
 import EventHandler from './Handlers/EventHandler';
+import AutoYeet from './Cron/AutoYeet';
+import RedditFeed from './Cron/RedditFeed';
+import cron from 'node-cron';
 
 // bot
 class Bot {
@@ -32,6 +35,13 @@ class Bot {
 			user.setActivity('Cloud District 9', {
 				type: 'WATCHING'
 			});
+
+			// Start Cron tasks.
+			const Yeet = new AutoYeet(this.client);
+			cron.schedule('0 0 * * *', () => {
+				Yeet.yeet();
+			});
+			RedditFeed.run();
 		} else {
 			// TODO: Channel log
 			console.error('Something went wrong. User is Null');

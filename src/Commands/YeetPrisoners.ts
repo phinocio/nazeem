@@ -1,5 +1,6 @@
 import { Message } from 'discord.js';
 import Command from '../Interfaces/Command';
+import { roles } from '../../config.json';
 
 class YeetPrisoners implements Command<undefined> {
 	public identifier: string;
@@ -20,14 +21,36 @@ class YeetPrisoners implements Command<undefined> {
 			console.log('Message has no member. Error reee');
 			return;
 		}
-		await this.respond(
-			msg,
-			{
-				message:
-					'Check out the FAQ at: https://github.com/phinocio/UltimateSkyrim/blob/master/Docs/FAQ.md'
-			},
-			'send'
-		);
+
+		// get all members with prisoner role
+		const prisoners = await msg.guild?.roles.fetch(roles.Prisoner);
+
+		if (prisoners?.members) {
+			let kicked = 0;
+			prisoners.members.forEach((member: any) => {
+				// 604800000 is the amount if milliseconds in a week. So we're checking if someone has been in the Guild for a week or more.
+				console.log(Date.now() - member?.joinedTimestamp > 604800000);
+				if (Date.now() - member?.joinedTimestamp > 604800000) {
+					// member.kick();
+					kicked++;
+				}
+			});
+			await this.respond(
+				msg,
+				{
+					message: `${kicked} Prisoners who can't read were kicked`
+				},
+				'send'
+			);
+		} else {
+			await this.respond(
+				msg,
+				{
+					message: 'There are no prisoners to kick!'
+				},
+				'send'
+			);
+		}
 	}
 
 	protected async respond(

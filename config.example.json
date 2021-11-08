@@ -19,6 +19,11 @@
 		"subreddit": "ultimateskyrim",
 		"frequency": "* * * * *"
 	},
+	"autoYeet": {
+		"webhook": "change-me",
+		"frequency": "* * * * *",
+		"guild": "change-me"
+	},
 	"roles": {
 		"Prisoner": "399211910857228310",
 		"NotifyMe": "717881596774055963",
