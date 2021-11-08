@@ -68,7 +68,7 @@ class Help implements Command<HelpParams> {
 		embed.setFooter(`Type ${this.usage} for specific command info.`);
 		try {
 			await this.respond(msg, { message: embed }, 'embed');
-		} catch (e) {
+		} catch (e: any) {
 			console.error('Error from help command: ' + e.message);
 		}
 	}
@@ -121,7 +121,7 @@ class Help implements Command<HelpParams> {
 
 		try {
 			await this.respond(msg, { message: embed }, 'send');
-		} catch (e) {
+		} catch (e: any) {
 			console.error('Error from help command: ' + e.message);
 		}
 	}
@@ -143,7 +143,7 @@ class Help implements Command<HelpParams> {
 					await msg.reply(data['message']);
 					break;
 			}
-		} catch (e) {
+		} catch (e: any) {
 			console.error(`${this.identifier} response error: ${e.message}`);
 		}
 	}

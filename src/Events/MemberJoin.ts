@@ -7,7 +7,7 @@ class MemberJoin {
 	): Promise<void> {
 		try {
 			await member.roles.add(roles.Prisoner);
-		} catch (e) {
+		} catch (e: any) {
 			// TODO: Implement a channel log
 			console.error(e.message);
 		}

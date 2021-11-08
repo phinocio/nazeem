@@ -45,7 +45,7 @@ https://docs.google.com/document/d/1PusjuS09qs8QPU5PVf7uSoZKt_35ZTvFmFrLWtIaTQ0/
 					await msg.reply(data['message']);
 					break;
 			}
-		} catch (e) {
+		} catch (e: any) {
 			console.error(`${this.identifier} response error: ${e.message}`);
 		}
 	}

@@ -69,7 +69,7 @@ class Unban implements Command<UnbanParams> {
 					await msg.reply(data['message']);
 					break;
 			}
-		} catch (e) {
+		} catch (e: any) {
 			console.error(`${this.identifier} response error: ${e.message}`);
 		}
 	}

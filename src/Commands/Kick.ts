@@ -55,7 +55,7 @@ class Kick implements Command<KickParams> {
 			await member.send(
 				`You have been kicked from **${msg.guild?.name}** for: ${reason}`
 			);
-		} catch (e) {
+		} catch (e: any) {
 			await msg.channel.send('Error: ' + e.message);
 		}
 
@@ -69,7 +69,7 @@ class Kick implements Command<KickParams> {
 			);
 
 			await member.kick(reason);
-		} catch (e) {
+		} catch (e: any) {
 			await msg.channel.send('Error: ' + e.message);
 		}
 	}
@@ -88,7 +88,7 @@ class Kick implements Command<KickParams> {
 					await msg.reply(data['message']);
 					break;
 			}
-		} catch (e) {
+		} catch (e: any) {
 			console.error(`${this.identifier} response error: ${e.message}`);
 		}
 	}

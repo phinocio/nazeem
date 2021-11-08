@@ -55,7 +55,7 @@ class Ban implements Command<BanParams> {
 			await member.send(
 				`You have been banned from **${msg.guild?.name}** for: ${reason}`
 			);
-		} catch (e) {
+		} catch (e: any) {
 			await msg.channel.send('Error: ' + e.message);
 		}
 
@@ -69,7 +69,7 @@ class Ban implements Command<BanParams> {
 			);
 
 			await member.ban({ reason });
-		} catch (e) {
+		} catch (e: any) {
 			await msg.channel.send('Error: ' + e.message);
 		}
 	}
@@ -88,7 +88,7 @@ class Ban implements Command<BanParams> {
 					await msg.reply(data['message']);
 					break;
 			}
-		} catch (e) {
+		} catch (e: any) {
 			console.error(`${this.identifier} response error: ${e.message}`);
 		}
 	}

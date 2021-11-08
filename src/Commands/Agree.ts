@@ -28,7 +28,7 @@ class Agree implements Command<undefined> {
 		) {
 			try {
 				await msg.member.roles.remove(roles.Prisoner);
-			} catch (e) {
+			} catch (e: any) {
 				this.respond(msg, { message: e.message }, 'send');
 			}
 		}
@@ -50,7 +50,7 @@ class Agree implements Command<undefined> {
 					await msg.reply(data['message']);
 					break;
 			}
-		} catch (e) {
+		} catch (e: any) {
 			console.error(`${this.identifier} response error: ${e.message}`);
 		}
 	}

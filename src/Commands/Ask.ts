@@ -28,7 +28,7 @@ class Ask implements Command<undefined> {
 	): Promise<void> {
 		try {
 			await msg.channel.send(data['message']);
-		} catch (e) {
+		} catch (e: any) {
 			console.error(`${this.identifier} response error: ${e.message}`);
 		}
 	}

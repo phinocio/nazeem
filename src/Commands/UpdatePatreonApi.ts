@@ -31,7 +31,7 @@ class Pins implements Command<undefined> {
 				);
 				const data = await response.json();
 				await this.respond(msg, { message: data.message }, 'send');
-			} catch (e) {
+			} catch (e: any) {
 				this.respond(msg, { message: e.message }, 'send');
 			}
 		} else {
@@ -57,7 +57,7 @@ class Pins implements Command<undefined> {
 					await msg.reply(data['message']);
 					break;
 			}
-		} catch (e) {
+		} catch (e: any) {
 			console.error(`${this.identifier} response error: ${e.message}`);
 		}
 	}

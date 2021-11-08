@@ -21,7 +21,7 @@ class Bot {
 			await this.client.login(this.TOKEN);
 			this.eventHandler = new EventHandler(this.client);
 			this.eventHandler.handle();
-		} catch (err) {
+		} catch (err: any) {
 			console.error(`Error: ${err.message}`);
 		}
 	}

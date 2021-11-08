@@ -51,7 +51,7 @@ class MessageHandler {
 				.toLowerCase();
 			try {
 				await this.cmdHandler.handle(cmdMessage, msg);
-			} catch (e) {
+			} catch (e: any) {
 				// TODO: Channel log
 				console.log(
 					`Main command handler error: ${e.message}`,
@@ -70,7 +70,7 @@ class MessageHandler {
 				setTimeout(async () => {
 					await msg.delete();
 				}, 1000);
-			} catch (e) {
+			} catch (e: any) {
 				console.log('Message already deleted');
 			}
 		}

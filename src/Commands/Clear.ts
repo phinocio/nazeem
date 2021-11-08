@@ -50,7 +50,7 @@ class Clear implements Command<ClearParams> {
 				if (msg.channel.type != 'dm') {
 					await msg.channel.bulkDelete(amount);
 				}
-			} catch (e) {
+			} catch (e: any) {
 				await this.respond(msg, { message: e.message }, 'send');
 			}
 		} else {
@@ -81,7 +81,7 @@ class Clear implements Command<ClearParams> {
 					await msg.reply(data['message']);
 					break;
 			}
-		} catch (e) {
+		} catch (e: any) {
 			console.error(`${this.identifier} response error: ${e.message}`);
 		}
 	}

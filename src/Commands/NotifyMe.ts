@@ -70,7 +70,7 @@ class NotifyMe implements Command<NotifyMeParams> {
 					'reply'
 				);
 			}
-		} catch (e) {
+		} catch (e: any) {
 			console.log(e.message);
 		}
 	}
@@ -89,7 +89,7 @@ class NotifyMe implements Command<NotifyMeParams> {
 					await msg.reply(data['message']);
 					break;
 			}
-		} catch (e) {
+		} catch (e: any) {
 			console.error(`${this.identifier} response error: ${e.message}`);
 		}
 	}

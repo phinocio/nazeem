@@ -69,7 +69,7 @@ class SlowMode implements Command<SlowModeParams> {
 						);
 					}
 				}
-			} catch (e) {
+			} catch (e: any) {
 				await this.respond(msg, { message: e.message }, 'send');
 			}
 		} else {
@@ -100,7 +100,7 @@ class SlowMode implements Command<SlowModeParams> {
 					await msg.reply(data['message']);
 					break;
 			}
-		} catch (e) {
+		} catch (e: any) {
 			console.error(`${this.identifier} response error: ${e.message}`);
 		}
 	}

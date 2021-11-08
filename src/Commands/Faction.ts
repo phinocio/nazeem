@@ -104,7 +104,7 @@ class Faction implements Command<FactionParams> {
 					await msg.reply(data['message']);
 					break;
 			}
-		} catch (e) {
+		} catch (e: any) {
 			console.error(`${this.identifier} response error: ${e.message}`);
 		}
 	}
@@ -119,7 +119,7 @@ class Faction implements Command<FactionParams> {
 					await msg.member.roles.remove(factions[faction]);
 				}
 			}
-		} catch (e) {
+		} catch (e: any) {
 			// TODO: Channel log
 			console.log('Faction remove error:', e.message);
 		}
@@ -138,7 +138,7 @@ class Faction implements Command<FactionParams> {
 				'send'
 			);
 			this.numMsg++;
-		} catch (e) {
+		} catch (e: any) {
 			// TODO: Channel log
 			console.log('Faction add error:', e.message);
 		}

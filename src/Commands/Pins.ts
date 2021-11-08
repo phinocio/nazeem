@@ -18,7 +18,7 @@ class Pins implements Command<undefined> {
 		try {
 			// TODO: The link will be stored in the DB once sqlite is set up. No point having it in config.json
 			await msg.channel.send('https://i.imgur.com/LETwjvd.gifv');
-		} catch (e) {
+		} catch (e: any) {
 			this.respond(msg, { message: e.message });
 		}
 
@@ -31,7 +31,7 @@ class Pins implements Command<undefined> {
 	): Promise<void> {
 		try {
 			await msg.channel.send(data['message']);
-		} catch (e) {
+		} catch (e: any) {
 			console.error(`${this.identifier} response error: ${e.message}`);
 		}
 	}

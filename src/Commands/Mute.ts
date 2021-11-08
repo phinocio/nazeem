@@ -88,7 +88,7 @@ class Mute implements Command<MuteParams> {
 				await member.send(
 					`You have been **muted** on **${msg.guild?.name}** for: ${reason}`
 				);
-			} catch (e) {
+			} catch (e: any) {
 				await msg.channel.send('Error: ' + e.message);
 			}
 
@@ -101,7 +101,7 @@ class Mute implements Command<MuteParams> {
 					},
 					'send'
 				);
-			} catch (e) {
+			} catch (e: any) {
 				console.log(e);
 			}
 		} else {
@@ -127,7 +127,7 @@ class Mute implements Command<MuteParams> {
 					await msg.reply(data['message']);
 					break;
 			}
-		} catch (e) {
+		} catch (e: any) {
 			console.error(`${this.identifier} response error: ${e.message}`);
 		}
 	}

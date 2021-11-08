@@ -15,7 +15,7 @@ abstract class Storage {
 				)
 			);
 			data = new Set(parse);
-		} catch (e) {
+		} catch (e: any) {
 			// File doesn't exist.
 			console.log(e.message);
 		} finally {
@@ -30,7 +30,7 @@ abstract class Storage {
 				path.join(Storage.path, file),
 				'utf8'
 			);
-		} catch (e) {
+		} catch (e: any) {
 			// File doesn't exist.
 			console.log(e.message);
 		} finally {

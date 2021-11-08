@@ -23,7 +23,7 @@ class ConvertBMP {
 				// Requires imagemagick to be installed.
 				`convert ./storage/${attachment.name} ./storage/${newName}`
 			);
-		} catch (e) {
+		} catch (e: any) {
 			console.log(e.message);
 		}
 
