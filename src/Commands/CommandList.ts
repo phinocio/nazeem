@@ -17,6 +17,7 @@ import SlowMode from './SlowMode';
 // import Unban from './Unban';
 // import Unmute from './Unmute';
 import UpdatePatreonApi from './UpdatePatreonApi';
+import YeetPrisoners from './YeetPrisoners';
 
 class CommandList {
 	private commands: Array<Command<any>> = [
@@ -37,7 +38,8 @@ class CommandList {
 		// new StabilityTest(),
 		// new Unban(),
 		// new Unmute(),
-		new UpdatePatreonApi()
+		new UpdatePatreonApi(),
+		new YeetPrisoners()
 	];
 
 	public getCommands(): Array<Command<any>> {
