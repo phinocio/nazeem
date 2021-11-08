@@ -6,14 +6,19 @@
 <!-- /TOC -->
 ___
 
+## v0.17.0 - 2021-11-08
+
+- Updated error type for catches.
+- Implemented a cron that runs every x time (TBD) to yeet people with the prisoner role.
+
 ## v0.16.1 - 2021-11-08
 
-- Updated NPM packages
+- Updated NPM packages.
 
 ## v0.16.0 - 2021-08-22
 
-- Updated npm packages
-- Removed some commands no longer in use/superceded by CarlBot
+- Updated npm packages.
+- Removed some commands no longer in use/superceded by CarlBot.
 
 ## v0.14.1 - 2021-02-03
 
