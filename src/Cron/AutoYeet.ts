@@ -33,7 +33,7 @@ class AutoYeet {
 			embeds: [
 				{
 					title: 'Yeetinator 1000',
-					description: `${kicked} Prisoners who can't read were kicked`,
+					description: `${kicked} prisoners who can't read were kicked`,
 					thumbnail: {
 						url: 'https://cdn.discordapp.com/emojis/689897969146789938.png?size=128'
 					}
