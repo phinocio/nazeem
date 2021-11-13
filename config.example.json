@@ -12,7 +12,11 @@
 	"channels": {
 		"gatekeep": "399223244227346433",
 		"enlist": "433306572790431755",
-		"botCommands": "408873468826877973"
+		"botCommands": "408873468826877973",
+		"suggestions": "909167020061364254"
+	},
+	"webhooks": {
+		"scamReport": "change-me"
 	},
 	"redditFeed": {
 		"webhook": "change-me",
