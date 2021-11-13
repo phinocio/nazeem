@@ -6,6 +6,11 @@
 <!-- /TOC -->
 ___
 
+## v0.18.0 - 2021-11-13
+
+- Added functionality to auto mute a suspected nitro scam bot and delete their message
+- 
+
 ## v0.17.0 - 2021-11-08
 
 - Updated error type for catches.
