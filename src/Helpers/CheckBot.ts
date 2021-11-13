@@ -15,7 +15,8 @@ class CheckBot {
 		const msgContent = msg.content.toLocaleLowerCase();
 		if (
 			msgContent.includes('@everyone') ||
-			msgContent.includes('free nitro')
+			msgContent.includes('free nitro') ||
+			msgContent.includes('discord nitro for free')
 		) {
 			CheckBot.reportMessage(msg);
 			await msg.member?.roles.add(roles.Mute);
@@ -49,6 +50,11 @@ class CheckBot {
 						{
 							name: 'Offending Message',
 							value: `${msg.content}`,
+							inline: 'false'
+						},
+						{
+							name: 'Channel',
+							value: `${msg.channel}`,
 							inline: 'false'
 						}
 					]
