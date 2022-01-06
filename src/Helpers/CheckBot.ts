@@ -4,7 +4,6 @@ import { roles, webhooks } from '../../config.json';
 
 class CheckBot {
 	public static async check(msg: Message): Promise<boolean> {
-		console.log('checking!');
 		// check if the message is from a mod/admin, if so, don't do anything.
 		if (
 			msg.member?.hasPermission('ADMINISTRATOR') ||
