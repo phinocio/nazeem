@@ -20,7 +20,7 @@
 	},
 	"redditFeed": {
 		"webhook": "change-me",
-		"subreddit": "ultimateskyrim",
+		"subreddit": "wildlander",
 		"frequency": "* * * * *"
 	},
 	"autoYeet": {

@@ -44,7 +44,7 @@ class Help implements Command<HelpParams> {
 		embed.setThumbnail(bot.avatar);
 		embed.setColor(0x00ae86);
 
-		let commands = new CommandList().getCommands();
+		const commands = new CommandList().getCommands();
 
 		let isMod;
 
@@ -54,13 +54,13 @@ class Help implements Command<HelpParams> {
 			}
 		}
 
-		if (isMod || msg.member.hasPermission('ADMINISTRATOR')) {
-			commands = commands.filter((commands) => !commands.isUserCommand);
-			embed.setAuthor(`${bot.name} Admin Commands`, bot.avatar);
-		} else {
-			commands = commands.filter((commands) => commands.isUserCommand);
-			embed.setAuthor(`${bot.name} User Commands`, bot.avatar);
-		}
+		// if (isMod || msg.member.hasPermission('ADMINISTRATOR')) {
+		// 	commands = commands.filter((commands) => !commands.isUserCommand);
+		// 	embed.setAuthor(`${bot.name} Admin Commands`, bot.avatar);
+		// } else {
+		// 	commands = commands.filter((commands) => commands.isUserCommand);
+		// 	embed.setAuthor(`${bot.name} User Commands`, bot.avatar);
+		// }
 
 		for (const command of commands) {
 			embed.addField(command.identifier, command.description);
