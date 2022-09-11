@@ -114,7 +114,7 @@ class MessageHandler {
 				};
 				MessageHandler.sendNotif(
 					data,
-					webhooks.scamReport,
+					webhooks.apiUpdate,
 					'API auto update error: '
 				);
 				const response = await fetch(
@@ -134,7 +134,7 @@ class MessageHandler {
 				};
 				MessageHandler.sendNotif(
 					data,
-					webhooks.scamReport,
+					webhooks.apiUpdate,
 					'API auto update error: '
 				);
 			} catch (e: any) {}

@@ -17,7 +17,8 @@
 		"announcements": "610749553095737355"
 	},
 	"webhooks": {
-		"scamReport": "change-me"
+		"scamReport": "change-me",
+		"apiUpdate": "change-me"
 	},
 	"redditFeed": {
 		"webhook": "change-me",
