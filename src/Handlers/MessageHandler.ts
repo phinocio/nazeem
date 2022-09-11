@@ -5,6 +5,7 @@ import CommandRegistry from '../Commands/CommandRegistry';
 import ConvertBMP from '../Helpers/ConvertBMP';
 import Storage from '../Helpers/Storage';
 import CheckBot from '../Helpers/CheckBot';
+import fetch from 'node-fetch';
 
 class MessageHandler {
 	private cmdHandler: CommandHandler;
