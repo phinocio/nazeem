@@ -6,10 +6,14 @@
 <!-- /TOC -->
 ___
 
+## v0.19.0 - 2022-09-11
+
+- Updated README to say Wildlander instead of Ultimate Skyrim
+- Add feature that auto updates patreon caches when there is a post in #announcements
+
 ## v0.18.0 - 2021-11-13
 
 - Added functionality to auto mute a suspected nitro scam bot and delete their message
-- 
 
 ## v0.17.0 - 2021-11-08
 

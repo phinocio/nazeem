@@ -1,7 +1,7 @@
 {
     "name": "nazeem",
-    "version": "0.18.0",
-    "description": "Custom Discord bot for Dylan Perry's Ultimate Skyrim server",
+    "version": "0.19.0",
+    "description": "Custom Discord bot for Dylan Perry's Wildlander server",
     "main": "dist/index.js",
     "repository": {
         "type": "git",

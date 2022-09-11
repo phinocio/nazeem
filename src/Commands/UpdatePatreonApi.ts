@@ -30,6 +30,7 @@ class Pins implements Command<undefined> {
 					}
 				);
 				const data = await response.json();
+				console.log(data);
 				await this.respond(msg, { message: data.message }, 'send');
 			} catch (e: any) {
 				this.respond(msg, { message: e.message }, 'send');

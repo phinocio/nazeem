@@ -1,5 +1,5 @@
 import { Message, MessageAttachment } from 'discord.js';
-import { message, channels } from '../../config.json';
+import { message, channels, webhooks } from '../../config.json';
 import CommandHandler from './CommandHandler';
 import CommandRegistry from '../Commands/CommandRegistry';
 import ConvertBMP from '../Helpers/ConvertBMP';
@@ -99,6 +99,64 @@ class MessageHandler {
 			} catch (e: any) {
 				console.log('Message already deleted');
 			}
+		}
+
+		// On announcement message, update the patreon caches.
+		if (msg.channel.id == channels.announcements) {
+			try {
+				let data = {
+					embeds: [
+						{
+							title: 'Launcher Patreon API',
+							description: `Message in announcements detected... updating Patreon API caches...`
+						}
+					]
+				};
+				MessageHandler.sendNotif(
+					data,
+					webhooks.scamReport,
+					'API auto update error: '
+				);
+				const response = await fetch(
+					'https://ultsky.phinocio.com/api/patreon/update',
+					{
+						method: 'PATCH'
+					}
+				);
+				const resp = await response.json();
+				data = {
+					embeds: [
+						{
+							title: 'Launcher Patreon API',
+							description: `${resp.message}`
+						}
+					]
+				};
+				MessageHandler.sendNotif(
+					data,
+					webhooks.scamReport,
+					'API auto update error: '
+				);
+			} catch (e: any) {}
+		}
+	}
+
+	// TODO: Make this a method in its own class
+	public static async sendNotif(
+		data: Record<string, unknown>,
+		webhook: string,
+		errorMsg: string
+	): Promise<void> {
+		try {
+			await fetch(webhook, {
+				method: 'POST',
+				headers: {
+					'Content-Type': 'application/json'
+				},
+				body: JSON.stringify(data)
+			});
+		} catch (e: any) {
+			console.log(errorMsg + e.message);
 		}
 	}
 }
