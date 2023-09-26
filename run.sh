@@ -1,1 +1,0 @@
-killall node & nohup npm run run-prod &
