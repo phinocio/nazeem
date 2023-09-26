@@ -1,5 +1,7 @@
 const { SlashCommandBuilder, PermissionFlagsBits } = require("discord.js");
 
+const { apiUrl } = require("../../../config.json");
+
 module.exports = {
 	data: new SlashCommandBuilder()
 		.setName("updatepatreonapi")
@@ -9,7 +11,7 @@ module.exports = {
 	async execute(interaction) {
 		await interaction.reply("Refreshing API...");
 
-		const r = await fetch("https://ultsky.phinocio.com/api/patreon/update", {
+		const r = await fetch(apiUrl, {
 			method: "PATCH",
 		});
 		const data = await r.json();

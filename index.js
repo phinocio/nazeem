@@ -1,9 +1,20 @@
 const fs = require("node:fs");
 const path = require("node:path");
-const { Client, Collection, GatewayIntentBits } = require("discord.js");
+const { Client, Collection, GatewayIntentBits, ActivityType } = require("discord.js");
 const { token } = require("./config.json");
+const cron = require("node-cron");
+const { Yeetinator } = require("./src/cron/yeetinator");
 
-const client = new Client({ intents: [GatewayIntentBits.Guilds, GatewayIntentBits.GuildMembers] });
+const client = new Client({
+	intents: [
+		GatewayIntentBits.Guilds,
+		GatewayIntentBits.GuildMembers,
+		GatewayIntentBits.GuildPresences,
+		GatewayIntentBits.GuildMessages,
+		GatewayIntentBits.MessageContent,
+	],
+	presence: { activities: [{ type: ActivityType.Watching, name: "Jarl Balgruuf" }], status: "online" },
+});
 
 client.commands = new Collection();
 const foldersPath = path.join(__dirname, "src/commands");
@@ -37,3 +48,11 @@ for (const file of eventFiles) {
 }
 
 client.login(token);
+
+// Cron related stuff
+const yeet = new Yeetinator(client);
+
+// 0 0 * * * is midnight daily. Server is in UTC.
+cron.schedule("0 0 * * *", () => {
+	yeet.yeet();
+});
