@@ -1,45 +1,27 @@
 {
-    "name": "nazeem",
-    "version": "0.19.0",
-    "description": "Custom Discord bot for Dylan Perry's Wildlander server",
-    "main": "dist/index.js",
-    "repository": {
-        "type": "git",
-        "url": "git+https://github.com/phinocio/nazeem.git"
-    },
-    "author": "Phinocio",
-    "bugs": {
-        "url": "https://github.com/phinocio/nazeem/issues"
-    },
-    "homepage": "https://github.com/phinocio/nazeem#readme",
-    "license": "MIT",
-    "private": true,
-    "scripts": {
-        "tsc": "tsc --noEmit",
-        "watch": "nodemon --watch '**/*.ts' --ignore 'src/**/*.spec.ts' --exec 'ts-node' src/App.ts",
-        "run-prod": "ts-node 'src/App.ts'"
-    },
-    "devDependencies": {
-        "@types/crypto-js": "^4.0.1",
-        "@types/node": "^14.14.19",
-        "@types/node-cron": "^2.0.3",
-        "@types/ws": "^7.4.0",
-        "@typescript-eslint/eslint-plugin": "^4.11.1",
-        "@typescript-eslint/parser": "^4.11.1",
-        "eslint": "^7.16.0",
-        "eslint-config-prettier": "^7.1.0",
-        "eslint-plugin-prettier": "^3.1.3",
-        "nodemon": "^2.0.3",
-        "prettier": "^2.0.5",
-        "typescript": "^4.1.3"
-    },
-    "dependencies": {
-        "@types/node-fetch": "^2.5.7",
-        "crypto-js": "^4.0.0",
-        "discord.js": "^12.5.1",
-        "node-cron": "^2.0.3",
-        "node-fetch": "^2.6.1",
-        "ts-node": "^9.1.1",
-        "winston": "^3.2.1"
-    }
+	"name": "nazeem",
+	"version": "1.0.0",
+	"description": "Custom Discord bot for Dylan Perry's Wildlander server",
+	"main": "index.js",
+	"scripts": {
+		"test": "echo \"Error: no test specified\" && exit 1"
+	},
+	"repository": {
+		"type": "git",
+		"url": "git+https://github.com/phinocio/nazeem.git"
+	},
+	"author": "Phinocio",
+	"license": "MIT",
+	"bugs": {
+		"url": "https://github.com/phinocio/nazeem/issues"
+	},
+	"homepage": "https://github.com/phinocio/nazeem#readme",
+	"dependencies": {
+		"discord.js": "^14.13.0"
+	},
+	"devDependencies": {
+		"eslint": "^8.50.0",
+		"eslint-config-prettier": "9.0.0",
+		"prettier": "3.0.3"
+	}
 }

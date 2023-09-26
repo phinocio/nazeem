@@ -1,5 +1,2 @@
 node_modules/
-dist/
 config.json
-config.json.save
-nohup.out
