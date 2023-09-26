@@ -14,7 +14,7 @@ module.exports = {
 			await member.roles.remove(role);
 			await interaction.reply({ content: "Thanks for agreeing, enjoy the server!", ephemeral: true });
 		} else {
-			await interaction.reply("You already agreed to the rules!");
+			await interaction.reply({ content: "You already agreed to the rules!", ephemeral: true });
 		}
 	},
 };

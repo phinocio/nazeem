@@ -31,6 +31,7 @@ module.exports = {
 		});
 
 		collector.on("collect", async (i) => {
+			await i.reply({ content: "Working on it...", ephemeral: true });
 			const selection = i.values[0];
 			const role = await interaction.guild.roles.fetch(selection);
 
@@ -40,14 +41,14 @@ module.exports = {
 			await removeRoles(member);
 			await member.roles.add(role);
 
-			await i.reply({ content: `${i.user}, you have joined the faction!`, ephemeral: true });
+			await i.editReply({ content: `${i.user}, you have joined the faction!`, ephemeral: true });
 		});
 	},
 };
 
 async function removeRoles(member) {
 	for (const faction in factions) {
-		member.roles.remove(factions[faction]);
+		await member.roles.remove(factions[faction]);
 	}
 }
 
