@@ -1,4 +1,4 @@
-const { Events } = require("discord.js");
+const { Events, PermissionsBitField } = require("discord.js");
 
 const { checkIfBot } = require("../moderation/checkBot");
 const { channels, webhooks, apiUrl } = require("../../config.json");
@@ -10,6 +10,14 @@ module.exports = {
 			checkIfBot(message);
 			if (message.channel.id === channels.announcements) {
 				updateApi();
+			}
+
+			if (
+				(!message.member.permissions.has(PermissionsBitField.Flags.Administrator) ||
+					!message.member.permissions.has(PermissionsBitField.Flags.KickMembers)) &&
+				message.channel.id === channels.prison
+			) {
+				message.delete();
 			}
 		}
 	},
