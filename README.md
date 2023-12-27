@@ -1,6 +1,6 @@
 # Nazeem
 
-Custom Discord bot for Belmont Boy discord server.
+Custom Discord bot for Dylan Perry/Wildlander discord server.
 
 > Do you get to the Cloud District very often?
 

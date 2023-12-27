@@ -8,3 +8,5 @@ services:
         container_name: nazeem-app
         restart: unless-stopped
         entrypoint: sh -c "node ."
+        volumes:
+            - ./storage:/app/storage
