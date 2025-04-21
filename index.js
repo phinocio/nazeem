@@ -4,7 +4,6 @@ const { Client, Collection, GatewayIntentBits, ActivityType } = require("discord
 const { token } = require("./config.json");
 const cron = require("node-cron");
 const { Yeetinator } = require("./src/cron/yeetinator");
-const { RedditFeed } = require("./src/cron/redditFeed");
 
 const client = new Client({
 	intents: [
@@ -52,14 +51,8 @@ client.login(token);
 
 // Cron related stuff
 const yeet = new Yeetinator(client);
-const redditFeed = new RedditFeed();
 
 // 0 0 * * * is midnight daily. Server is in UTC.
 cron.schedule("0 0 * * *", () => {
 	yeet.yeet();
-});
-
-// * * * * * is every minute
-cron.schedule("* * * * *", () => {
-	redditFeed.getNewPosts();
 });
