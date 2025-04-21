@@ -4,7 +4,9 @@
 	"description": "Custom Discord bot for Dylan Perry's Wildlander server",
 	"main": "index.js",
 	"scripts": {
-		"test": "echo \"Error: no test specified\" && exit 1"
+		"lint": "eslint .",
+		"lint:fix": "eslint . --fix",
+		"format": "prettier --write ."
 	},
 	"repository": {
 		"type": "git",
@@ -22,8 +24,10 @@
 		"node-cron": "^3.0.2"
 	},
 	"devDependencies": {
-		"eslint": "^8.50.0",
+		"@eslint/js": "^9.25.1",
+		"eslint": "^9.0.0",
 		"eslint-config-prettier": "^9.1.0",
+		"globals": "^16.0.0",
 		"prettier": "^3.1.1"
 	}
 }

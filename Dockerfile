@@ -1,9 +1,12 @@
-FROM node:20-alpine3.18 as app
+FROM node:lts-alpine3.20 AS app
 
 WORKDIR /app
 
-COPY package*.json /app/
-RUN npm ci
+RUN npm install -g pnpm@9.11
+
+COPY package.json /app/
+COPY pnpm-lock.yaml /app/
+RUN pnpm install
 
 RUN apk add --no-cache curl
 
